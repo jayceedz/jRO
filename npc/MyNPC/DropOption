@@ -1,0 +1,1220 @@
+
+/*
+CREATE TABLE IF NOT EXISTS `ropt_Drate` (
+  `name` varchar(30) NOT NULL default '',
+  `idmin1` smallint(6) NOT NULL DEFAULT '0',
+  `idmax1` smallint(6) NOT NULL DEFAULT '0',
+  `idmin2` smallint(6) NOT NULL DEFAULT '0',
+  `idmax2` smallint(6) NOT NULL DEFAULT '0',
+  `idmin3` smallint(6) NOT NULL DEFAULT '0',
+  `idmax3` smallint(6) NOT NULL DEFAULT '0',
+  `idmin4` smallint(6) NOT NULL DEFAULT '0',
+  `idmax4` smallint(6) NOT NULL DEFAULT '0',
+  `idmin5` smallint(6) NOT NULL DEFAULT '0',
+  `idmax5` smallint(6) NOT NULL DEFAULT '0',
+  `idmin6` smallint(6) NOT NULL DEFAULT '0',
+  `idmax6` smallint(6) NOT NULL DEFAULT '0',
+  `idmin7` smallint(6) NOT NULL DEFAULT '0',
+  `idmax7` smallint(6) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`name`),
+  KEY `name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE IF NOT EXISTS `ropt_effect` (
+  `name` varchar(30) NOT NULL default '',
+  `Limit` smallint(6) NOT NULL DEFAULT '0',
+  `Option1` smallint(6) NOT NULL DEFAULT '0',
+  `Option2` smallint(6) NOT NULL DEFAULT '0',
+  `Option3` smallint(6) NOT NULL DEFAULT '0',
+  `Option4` smallint(6) NOT NULL DEFAULT '0',
+  `Option5` smallint(6) NOT NULL DEFAULT '0',
+  `Option6` smallint(6) NOT NULL DEFAULT '0',
+  `Option7` smallint(6) NOT NULL DEFAULT '0',
+  `Option8` smallint(6) NOT NULL DEFAULT '0',
+  `Option9` smallint(6) NOT NULL DEFAULT '0',
+  `Option10` smallint(6) NOT NULL DEFAULT '0',
+  `Option11` smallint(6) NOT NULL DEFAULT '0',
+  `Option12` smallint(6) NOT NULL DEFAULT '0',
+  `Option13` smallint(6) NOT NULL DEFAULT '0',
+  `Option14` smallint(6) NOT NULL DEFAULT '0',
+  `Option15` smallint(6) NOT NULL DEFAULT '0',
+  `Option16` smallint(6) NOT NULL DEFAULT '0',
+  `Option17` smallint(6) NOT NULL DEFAULT '0',
+  `Option18` smallint(6) NOT NULL DEFAULT '0',
+  `Option19` smallint(6) NOT NULL DEFAULT '0',
+  `Option20` smallint(6) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`name`),
+  KEY `name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE IF NOT EXISTS `ropt_Value` (
+  `name` varchar(30) NOT NULL default '',
+  `idmin1` smallint(6) NOT NULL DEFAULT '0',
+  `idmax1` smallint(6) NOT NULL DEFAULT '0',
+  `idmin2` smallint(6) NOT NULL DEFAULT '0',
+  `idmax2` smallint(6) NOT NULL DEFAULT '0',
+  `idmin3` smallint(6) NOT NULL DEFAULT '0',
+  `idmax3` smallint(6) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`name`),
+  KEY `name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE IF NOT EXISTS `ropt_itemdrate` (
+  `CodeID` smallint(6) NOT NULL DEFAULT '0',
+  `OptionMin1` smallint(6) NOT NULL DEFAULT '0',
+  `OptionMax1` smallint(6) NOT NULL DEFAULT '0',
+  `OptionMin2` smallint(6) NOT NULL DEFAULT '0',
+  `OptionMax2` smallint(6) NOT NULL DEFAULT '0',
+  `OptionMin3` smallint(6) NOT NULL DEFAULT '0',
+  `OptionMax3` smallint(6) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`CodeID`),
+  KEY `id` (`CodeID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE IF NOT EXISTS `ropt_mobdrop` (
+  `MonsterID` smallint(6) NOT NULL DEFAULT '0',
+  `Weapon1` smallint(6) NOT NULL DEFAULT '0',
+  `Weapon2` smallint(6) NOT NULL DEFAULT '0',
+  `Weapon3` smallint(6) NOT NULL DEFAULT '0',
+  `Weapon4` smallint(6) NOT NULL DEFAULT '0',
+  `Weapon5` smallint(6) NOT NULL DEFAULT '0',
+  `Weapon6` smallint(6) NOT NULL DEFAULT '0',
+  `Weapon7` smallint(6) NOT NULL DEFAULT '0',
+  `Armor1` smallint(6) NOT NULL DEFAULT '0',
+  `Armor2` smallint(6) NOT NULL DEFAULT '0',
+  `Armor3` smallint(6) NOT NULL DEFAULT '0',
+  `Garment1` smallint(6) NOT NULL DEFAULT '0',
+  `Garment2` smallint(6) NOT NULL DEFAULT '0',
+  `Garment3` smallint(6) NOT NULL DEFAULT '0',
+  `Shield1` smallint(6) NOT NULL DEFAULT '0',
+  `Shield2` smallint(6) NOT NULL DEFAULT '0',
+  `Shield3` smallint(6) NOT NULL DEFAULT '0',
+  `Boots1` smallint(6) NOT NULL DEFAULT '0',
+  `Boots2` smallint(6) NOT NULL DEFAULT '0',
+  `Boots3` smallint(6) NOT NULL DEFAULT '0',
+  `Accessory1` smallint(6) NOT NULL DEFAULT '0',
+  `Accessory2` smallint(6) NOT NULL DEFAULT '0',
+  `Accessory3` smallint(6) NOT NULL DEFAULT '0',
+  `Headgear1` smallint(6) NOT NULL DEFAULT '0',
+  `Headgear2` smallint(6) NOT NULL DEFAULT '0',
+  `Headgear3` smallint(6) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`MonsterID`),
+  KEY `MonsterID` (`MonsterID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+*/
+
+/*
+-	script	sample1	-1,{
+
+
+	OnNPCKillEvent:
+
+	//query_sql "SELECT `CodeID`,`OptionMin1`,`OptionMax1`,`OptionMin2`,`OptionMax2`,`OptionMin3`,`OptionMax3` FROM `ropt_itemdrate` WHERE `CodeID` = '1'", .@roptRID, .@roptR1min, .@roptR1max, .@roptR2min, .@roptR2max, .@roptR3min, .@roptR3max;
+
+	setarray .@OptID2[0],17,18,19,24;
+	for (.@e = 0; .@e < 4; .@e++) {
+	.@index2 = rand(getarraysize(.@OptID2));
+	}
+
+	//dispbottom " x"+.@OptID2[.@index2]+" ";
+
+end;
+}
+*/
+
+-	script	DropOption	-1,{
+
+
+OnNPCKillEvent:
+
+
+	query_sql "SELECT `MonsterID`,`Weapon1`,`Weapon2`,`Weapon3`,`Weapon4`,`Weapon5`,`Weapon6`,`Weapon7`,`Armor1`,`Armor2`,`Armor3`,`Garment1`,`Garment2`,`Garment3`,`Shield1`,`Shield2`,`Shield3`,`Boots1`,`Boots2`,`Boots3`,`Accessory1`,`Accessory2`,`Accessory3`,`Headgear1`,`Headgear2`,`Headgear3` FROM `ropt_mobdrop` WHERE `MonsterID` = '"+@killedgid_m+"'", .@roptMonsterID, .@roptWeapon1, .@roptWeapon2, .@roptWeapon3, .@roptWeapon4, .@roptWeapon5, .@roptWeapon6, .@roptWeapon7, .@roptArmor1, .@roptArmor2, .@roptArmor3, .@roptGarment1, .@roptGarment2, .@roptGarment3, .@roptShield1, .@roptShield2, .@roptShield3, .@roptBoots1, .@roptBoots2, .@roptBoots3, .@roptAccessory1, .@roptAccessory2, .@roptAccessory3, .@roptHeadgear1, .@roptHeadgear2, .@roptHeadgear3;
+	query_sql "SELECT `CodeID`,`OptionMin1`,`OptionMax1`,`OptionMin2`,`OptionMax2`,`OptionMin3`,`OptionMax3` FROM `ropt_itemdrate` WHERE `CodeID` = '1'", .@roptRID, .@roptR1min, .@roptR1max, .@roptR2min, .@roptR2max, .@roptR3min, .@roptR3max;
+
+	query_sql "SELECT `name`,`idmin1`,`idmax1`,`idmin2`,`idmax2`,`idmin3`,`idmax3`,`idmin4`,`idmax4`,`idmin5`,`idmax5`,`idmin6`,`idmax6`,`idmin7`,`idmax7` FROM `ropt_Drate` WHERE `name` = 'Weapon'", .@wepid, .@wep1min, .@wep1max, .@wep2min, .@wep2ax, .@wep3min, .@wep3max, .@wep4min, .@wep4max, .@wep5min, .@wep5max, .@wep6min, .@wep6max, .@wep7min, .@wep7max;
+	query_sql "SELECT `name`,`idmin1`,`idmax1`,`idmin2`,`idmax2`,`idmin3`,`idmax3`,`idmin4`,`idmax4`,`idmin5`,`idmax5`,`idmin6`,`idmax6`,`idmin7`,`idmax7` FROM `ropt_Drate` WHERE `name` = 'Armor'", .@Armid, .@Arm1min, .@Arm1max, .@Arm2min, .@Arm2max, .@Arm3min, .@Arm3max, .@Arm4min, .@Arm4max, .@Arm5min, .@Arm5max, .@Arm6min, .@Arm6max, .@Arm7min, .@Arm7max;
+	query_sql "SELECT `name`,`idmin1`,`idmax1`,`idmin2`,`idmax2`,`idmin3`,`idmax3`,`idmin4`,`idmax4`,`idmin5`,`idmax5`,`idmin6`,`idmax6`,`idmin7`,`idmax7` FROM `ropt_Drate` WHERE `name` = 'Garment'", .@Garid, .@Gar1min, .@Gar1max, .@Gar2min, .@Gar2max, .@Gar3min, .@Gar3max, .@Gar4min, .@Gar4max, .@Gar5min, .@Gar5max, .@Gar6min, .@Gar6max, .@Gar7min, .@Gar7max;
+	query_sql "SELECT `name`,`idmin1`,`idmax1`,`idmin2`,`idmax2`,`idmin3`,`idmax3`,`idmin4`,`idmax4`,`idmin5`,`idmax5`,`idmin6`,`idmax6`,`idmin7`,`idmax7` FROM `ropt_Drate` WHERE `name` = 'Shield'", .@Shiid, .@Shi1min, .@Shi1max, .@Shi2min, .@Shi2max, .@Shi3min, .@Shi3max, .@Shi4min, .@Shi4max, .@Shi5min, .@Shi5max, .@Shi6min, .@Shi6max, .@Shi7min, .@Shi7max;
+	query_sql "SELECT `name`,`idmin1`,`idmax1`,`idmin2`,`idmax2`,`idmin3`,`idmax3`,`idmin4`,`idmax4`,`idmin5`,`idmax5`,`idmin6`,`idmax6`,`idmin7`,`idmax7` FROM `ropt_Drate` WHERE `name` = 'Boots'", .@Botid, .@Bot1min, .@Bot1max, .@Bot2min, .@Bot2max, .@Bot3min, .@Bot3max, .@Bot4min, .@Bot4max, .@Bot5min, .@Bot5max, .@Bot6min, .@Bot6max, .@Bot7min, .@Bot7max;
+	query_sql "SELECT `name`,`idmin1`,`idmax1`,`idmin2`,`idmax2`,`idmin3`,`idmax3`,`idmin4`,`idmax4`,`idmin5`,`idmax5`,`idmin6`,`idmax6`,`idmin7`,`idmax7` FROM `ropt_Drate` WHERE `name` = 'Accessory'", .@Accid, .@Acc1min, .@Acc1max, .@Acc2min, .@Acc2max, .@Acc3min, .@Acc3max, .@Acc4min, .@Acc4max, .@Acc5min, .@Acc5max, .@Acc6min, .@Acc6max, .@Acc7min, .@Acc7max;
+	query_sql "SELECT `name`,`idmin1`,`idmax1`,`idmin2`,`idmax2`,`idmin3`,`idmax3`,`idmin4`,`idmax4`,`idmin5`,`idmax5`,`idmin6`,`idmax6`,`idmin7`,`idmax7` FROM `ropt_Drate` WHERE `name` = 'Headgear'", .@Headid, .@Head1min, .@Head1max, .@Head2min, .@Head2max, .@Head3min, .@Head3max, .@Head4min, .@Head4max, .@Head5min, .@Head5max, .@Head6min, .@Head6max, .@Head7min, .@Head7max;
+
+	query_sql "SELECT `name`,`idmin1`,`idmax1`,`idmin2`,`idmax2`,`idmin3`,`idmax3` FROM `ropt_Value` WHERE `name` = 'Weapon'", .@wepid, .@wepv1min, .@wepv1max, .@wepv2min, .@wepv2max, .@wepv3min, .@wepv3max;
+	query_sql "SELECT `name`,`idmin1`,`idmax1`,`idmin2`,`idmax2`,`idmin3`,`idmax3` FROM `ropt_Value` WHERE `name` = 'Armor'", .@Armid, .@Armv1min, .@Armv1max, .@Armv2min, .@Armv2max, .@Armv3min, .@Armv3max;
+	query_sql "SELECT `name`,`idmin1`,`idmax1`,`idmin2`,`idmax2`,`idmin3`,`idmax3` FROM `ropt_Value` WHERE `name` = 'Garment'", .@Garid, .@Garv1min, .@Garv1max, .@Garv2min, .@Garv2max, .@Garv3min, .@Garv3max;
+	query_sql "SELECT `name`,`idmin1`,`idmax1`,`idmin2`,`idmax2`,`idmin3`,`idmax3` FROM `ropt_Value` WHERE `name` = 'Shield'", .@Shiid, .@Shiv1min, .@Shiv1max, .@Shiv2min, .@Shiv2max, .@Shiv3min, .@Shiv3max;
+	query_sql "SELECT `name`,`idmin1`,`idmax1`,`idmin2`,`idmax2`,`idmin3`,`idmax3` FROM `ropt_Value` WHERE `name` = 'Boots'", .@Botid, .@Bot1min, .@Botv1max, .@Botv2min, .@Botv2max, .@Botv3min, .@Botv3max;
+	query_sql "SELECT `name`,`idmin1`,`idmax1`,`idmin2`,`idmax2`,`idmin3`,`idmax3` FROM `ropt_Value` WHERE `name` = 'Accessory'", .@Accid, .@Accv1min, .@Accv1max, .@Accv2min, .@Accv2max, .@Accv3min, .@Accv3max;
+	query_sql "SELECT `name`,`idmin1`,`idmax1`,`idmin2`,`idmax2`,`idmin3`,`idmax3` FROM `ropt_Value` WHERE `name` = 'Headgear'", .@Headid, .@Headv1min, .@Headv1max, .@Headv2min, .@Headv2max, .@Headv3min, .@Headv3max;
+
+
+	//==========================// Item ID //==========================// 
+
+	set .@opt_itemid1,.@roptWeapon1;		// <==============// WEAPON ITEM ID  1
+	set .@opt_itemid2,.@roptWeapon2;		// <==============// WEAPON ITEM ID  2
+	set .@opt_itemid3,.@roptWeapon3;		// <==============// WEAPON ITEM ID  3
+	set .@opt_itemid4,.@roptWeapon4;		// <==============// WEAPON ITEM ID  4
+	set .@opt_itemid5,.@roptWeapon5;		// <==============// WEAPON ITEM ID  5
+	set .@opt_itemid6,.@roptWeapon6;		// <==============// WEAPON ITEM ID  6
+	set .@opt_itemid7,.@roptWeapon7;		// <==============// WEAPON ITEM ID  7
+
+	set .@opt_itemida1,.@roptArmor1;		// <==============// ARMOR ITEM ID  1
+	set .@opt_itemida2,.@roptArmor2;		// <==============// ARMOR ITEM ID  2
+	set .@opt_itemida3,.@roptArmor3;		// <==============// ARMOR ITEM ID  3
+
+	set .@opt_itemidg1,.@roptGarment1;		// <==============// GARMENT ITEM ID  1
+	set .@opt_itemidg2,.@roptGarment2;		// <==============// GARMENT ITEM ID  2
+	set .@opt_itemidg3,.@roptGarment3;		// <==============// GARMENT ITEM ID  3
+
+	set .@opt_itemids1,.@roptShield1;		// <==============// SHIELD ITEM ID  1
+	set .@opt_itemids2,.@roptShield2;		// <==============// SHIELD ITEM ID  2
+	set .@opt_itemids3,.@roptShield3;		// <==============// SHIELD ITEM ID  3
+
+	set .@opt_itemidb1,.@roptBoots1;		// <==============// BOOTS ITEM ID  1
+	set .@opt_itemidb2,.@roptBoots2;		// <==============// BOOTS ITEM ID  2
+	set .@opt_itemidb3,.@roptBoots3;		// <==============// BOOTS ITEM ID  3
+
+	set .@opt_itemidac1,.@roptAccessory1;		// <==============// ACCESSORY ITEM ID  1
+	set .@opt_itemidac2,.@roptAccessory2;		// <==============// ACCESSORY ITEM ID  2
+	set .@opt_itemidac3,.@roptAccessory3;		// <==============// ACCESSORY ITEM ID  3
+
+	set .@opt_itemidh1,.@roptHeadgear1;		// <==============// HEADGEAR ITEM ID  1
+	set .@opt_itemidh2,.@roptHeadgear2;		// <==============// HEADGEAR ITEM ID  2
+	set .@opt_itemidh3,.@roptHeadgear3;		// <==============// HEADGEAR ITEM ID  3
+
+
+	//==========================// Drop Rate //==========================// 
+
+	set .@opt_result1,rand(.@wep1min,.@wep1max);	// <==============// WEAPON Drop Rate ITEM 1
+	set .@opt_result2,rand(.@wep2min,.@wep2max);	// <==============// WEAPON Drop Rate ITEM 2
+	set .@opt_result3,rand(.@wep3min,.@wep3max);	// <==============// WEAPON Drop Rate ITEM 3
+	set .@opt_result4,rand(.@wep4min,.@wep4max);	// <==============// WEAPON Drop Rate ITEM 4
+	set .@opt_result5,rand(.@wep5min,.@wep5max);	// <==============// WEAPON Drop Rate ITEM 5
+	set .@opt_result6,rand(.@wep6min,.@wep6max);	// <==============// WEAPON Drop Rate ITEM 6
+	set .@opt_result7,rand(.@wep7min,.@wep7max);	// <==============// WEAPON Drop Rate ITEM 7
+
+	set .@opt_resulta1,rand(.@Arm1min,.@Arm1max);	// <==============// ARMOR Drop Rate ITEM 1
+	set .@opt_resulta2,rand(.@Arm2min,.@Arm2max);	// <==============// ARMOR Drop Rate ITEM 2
+	set .@opt_resulta3,rand(.@Arm3min,.@Arm3max);	// <==============// ARMOR Drop Rate ITEM 3
+
+	set .@opt_resultg1,rand(.@Gar1min,.@Gar1max);	// <==============// GARMENT Drop Rate ITEM 1
+	set .@opt_resultg2,rand(.@Gar2min,.@Gar2max);	// <==============// GARMENT Drop Rate ITEM 2
+	set .@opt_resultg3,rand(.@Gar3min,.@Gar3max);	// <==============// GARMENT Drop Rate ITEM 3
+
+	set .@opt_results1,rand(.@Shi1min,.@Shi1max);	// <==============// SHIELD Drop Rate ITEM 1
+	set .@opt_results2,rand(.@Shi2min,.@Shi2max);	// <==============// SHIELD Drop Rate ITEM 2
+	set .@opt_results3,rand(.@Shi3min,.@Shi3max);	// <==============// SHIELD Drop Rate ITEM 3
+
+	set .@opt_resultb1,rand(.@Bot1min,.@Bot1max);	// <==============// BOOTS Drop Rate ITEM 1
+	set .@opt_resultb2,rand(.@Bot2min,.@Bot2max);	// <==============// BOOTS Drop Rate ITEM 2
+	set .@opt_resultb3,rand(.@Bot3min,.@Bot3max);	// <==============// BOOTS Drop Rate ITEM 3
+
+	set .@opt_resultac1,rand(.@Acc1min,.@Acc1max);	// <==============// ACCESSORY Drop Rate ITEM 1
+	set .@opt_resultac2,rand(.@Acc2min,.@Acc2max);	// <==============// ACCESSORY Drop Rate ITEM 2
+	set .@opt_resultac3,rand(.@Acc3min,.@Acc3max);	// <==============// ACCESSORY Drop Rate ITEM 3
+
+	set .@opt_resulth1,rand(.@Head1min,.@Head1max);	// <==============// HEADGEAR Drop Rate ITEM 1
+	set .@opt_resulth2,rand(.@Head2min,.@Head2max);	// <==============// HEADGEAR Drop Rate ITEM 2
+	set .@opt_resulth3,rand(.@Head3min,.@Head3max);	// <==============// HEADGEAR Drop Rate ITEM 3
+
+
+	//==========================// Random Value //==========================// 
+
+	set .@drandval1,rand(.@wepv1min,.@wepv1max);	// <==============// WEAPON Random Value Option 1
+	set .@drandval2,rand(.@wepv2min,.@wepv2max);	// <==============// WEAPON Random Value Option 2
+	set .@drandval3,rand(.@wepv3min,.@wepv3max);	// <==============// WEAPON Random Value Option 3
+
+	set .@drandvala1,rand(.@Armv1min,.@Armv1max);	// <==============// ARMOR Random Value Option 1
+	set .@drandvala2,rand(.@Armv2min,.@Armv2max);	// <==============// ARMOR Random Value Option 2
+	set .@drandvala3,rand(.@Armv3min,.@Armv3max);	// <==============// ARMOR Random Value Option 3
+
+	set .@drandvalg1,rand(.@Garv1min,.@Garv1max);	// <==============// GARMENT Random Value Option 1
+	set .@drandvalg2,rand(.@Garv2min,.@Garv2max);	// <==============// GARMENT Random Value Option 2
+	set .@drandvalg3,rand(.@Garv3min,.@Garv3max);	// <==============// GARMENT Random Value Option 3
+
+	set .@drandvals1,rand(.@Shi1min,.@Shiv1max);	// <==============// SHIELD Random Value Option 1
+	set .@drandvals2,rand(.@Shi2min,.@Shiv2max);	// <==============// SHIELD Random Value Option 2
+	set .@drandvals3,rand(.@Shi3min,.@Shiv3max);	// <==============// SHIELD Random Value Option 3
+
+	set .@drandvalb1,rand(.@Botv1min,.@Botv1max);	// <==============// BOOTS Random Value Option 1
+	set .@drandvalb2,rand(.@Botv2min,.@Botv2max);	// <==============// BOOTS Random Value Option 2
+	set .@drandvalb3,rand(.@Botv3min,.@Botv3max);	// <==============// BOOTS Random Value Option 3
+
+	set .@drandvalac1,rand(.@Accv1min,.@Accv1max);	// <==============// ACCESSORY Random Value Option 1
+	set .@drandvalac2,rand(.@Accv2min,.@Accv2max);	// <==============// ACCESSORY Random Value Option 2
+	set .@drandvalac3,rand(.@Accv3min,.@Accv3max);	// <==============// ACCESSORY Random Value Option 3
+
+	set .@drandvalh1,rand(.@Headv1min,.@Headv1max);	// <==============// HEADGEAR Random Value Option 1
+	set .@drandvalh2,rand(.@Headv2min,.@Headv2max);	// <==============// HEADGEAR Random Value Option 2
+	set .@drandvalh3,rand(.@Headv3min,.@Headv3max);	// <==============// HEADGEAR Random Value Option 3
+
+
+	if( .@OptID2[.@index2] == 24) { set .@drandval2,rand(5,15); } // <==============// Re-Random Crit
+	if( .@OptID2[.@index2] == 18 ) { set .@drandval2,rand(15,25); } // <==============// Re-Random Hit
+
+
+	setarray .@OptParam[0],0;
+
+	
+
+
+	//==========================// Weapon Option ID //==========================// 
+
+	setarray .@OptID1[0],3,4,5,6,7,8;
+		for (.@i = 0; .@i < 6; .@i++) {
+		.@index1 = rand(getarraysize(.@OptID1));
+		}
+
+	setarray .@OptID2[0],17,18,19,24;
+		for (.@e = 0; .@e < 4; .@e++) {
+		.@index2 = rand(getarraysize(.@OptID2));
+		}
+
+	setarray .@OptID3[0],114,124,104,166,168,170;
+		for (.@a = 0; .@a < 6; .@a++) {
+		.@index3 = rand(getarraysize(.@OptID3));
+		}
+
+	//==========================// Armor Option ID //==========================// 
+
+	setarray .@OptIDA1[0],3,4,5,6,7,8;
+		for (.@i = 0; .@i < 6; .@i++) {
+		.@indexA1 = rand(getarraysize(.@OptIDA1));
+		}
+
+	setarray .@OptIDA2[0],17,18,19,24;
+		for (.@e = 0; .@e < 4; .@e++) {
+		.@indexA2 = rand(getarraysize(.@OptIDA2));
+		}
+
+	setarray .@OptIDA3[0],114,124,104,166,168,170;
+		for (.@a = 0; .@a < 6; .@a++) {
+		.@indexA3 = rand(getarraysize(.@OptIDA3));
+		}
+
+	//==========================// Garment Option ID //==========================// 
+
+	setarray .@OptIDG1[0],3,4,5,6,7,8;
+		for (.@i = 0; .@i < 6; .@i++) {
+		.@indexG1 = rand(getarraysize(.@OptIDG1));
+		}
+
+	setarray .@OptIDG2[0],17,18,19,24;
+		for (.@e = 0; .@e < 4; .@e++) {
+		.@indexG2 = rand(getarraysize(.@OptIDG2));
+		}
+
+	setarray .@OptIDG3[0],114,124,104,166,168,170;
+		for (.@a = 0; .@a < 6; .@a++) {
+		.@indexG3 = rand(getarraysize(.@OptIDG3));
+		}
+
+	//==========================// Shield Option ID //==========================// 
+
+	setarray .@OptIDS1[0],3,4,5,6,7,8;
+		for (.@i = 0; .@i < 6; .@i++) {
+		.@indexS1 = rand(getarraysize(.@OptIDS1));
+		}
+
+	setarray .@OptIDS2[0],17,18,19,24;
+		for (.@e = 0; .@e < 4; .@e++) {
+		.@indexS2 = rand(getarraysize(.@OptIDS2));
+		}
+
+	setarray .@OptIDS3[0],114,124,104,166,168,170;
+		for (.@a = 0; .@a < 6; .@a++) {
+		.@indexS3 = rand(getarraysize(.@OptIDS3));
+		}
+	
+	//==========================// Boots Option ID //==========================// 
+
+	setarray .@OptIDB1[0],3,4,5,6,7,8;
+		for (.@i = 0; .@i < 6; .@i++) {
+		.@indexB1 = rand(getarraysize(.@OptIDB1));
+		}
+
+	setarray .@OptIDB2[0],17,18,19,24;
+		for (.@e = 0; .@e < 4; .@e++) {
+		.@indexB2 = rand(getarraysize(.@OptIDB2));
+		}
+
+	setarray .@OptIDB3[0],114,124,104,166,168,170;
+		for (.@a = 0; .@a < 6; .@a++) {
+		.@indexB3 = rand(getarraysize(.@OptIDB3));
+		}
+
+	//==========================// Accessory Option ID //==========================// 
+
+	setarray .@OptIDAC1[0],3,4,5,6,7,8;
+		for (.@i = 0; .@i < 6; .@i++) {
+		.@indexAC1 = rand(getarraysize(.@OptIDAC1));
+		}
+
+	setarray .@OptIDAC2[0],17,18,19,24;
+		for (.@e = 0; .@e < 4; .@e++) {
+		.@indexAC2 = rand(getarraysize(.@OptIDAC2));
+		}
+
+	setarray .@OptIDAC3[0],114,124,104,166,168,170;
+		for (.@a = 0; .@a < 6; .@a++) {
+		.@indexAC3 = rand(getarraysize(.@OptIDAC3));
+		}
+
+	//==========================// Headgear Option ID //==========================// 
+
+	setarray .@OptIDH1[0],3,4,5,6,7,8;
+		for (.@i = 0; .@i < 6; .@i++) {
+		.@indexH1 = rand(getarraysize(.@OptIDH1));
+		}
+
+	setarray .@OptIDH2[0],17,18,19,24;
+		for (.@e = 0; .@e < 4; .@e++) {
+		.@indexH2 = rand(getarraysize(.@OptIDH2));
+		}
+
+	setarray .@OptIDH3[0],114,124,104,166,168,170;
+		for (.@a = 0; .@a < 6; .@a++) {
+		.@indexH3 = rand(getarraysize(.@OptIDH3));
+		}
+
+
+	setarray .@OptVal[0],.@drandval1,.@drandval2,.@drandval3;
+	setarray .@OptID_1[0],.@OptID1[.@index1];
+	setarray .@OptID_2[0],.@OptID1[.@index1],.@OptID2[.@index2];
+	setarray .@OptID_3[0],.@OptID1[.@index1],.@OptID2[.@index2],.@OptID3[.@index3];
+
+	setarray .@OptVala[0],.@drandvala1,.@drandvala2,.@drandvala3;
+	setarray .@OptIDA_1[0],.@OptIDA1[.@indexA1];
+	setarray .@OptIDA_2[0],.@OptIDA1[.@indexA1],.@OptIDA2[.@indexA2];
+	setarray .@OptIDA_3[0],.@OptIDA1[.@indexA1],.@OptIDA2[.@indexA2],.@OptIDA3[.@indexA3];
+
+	setarray .@OptValg[0],.@drandvalg1,.@drandvalg2,.@drandvalg3;
+	setarray .@OptIDG_1[0],.@OptIDG1[.@indexG1];
+	setarray .@OptIDG_2[0],.@OptIDG1[.@indexG1],.@OptIDG2[.@indexG2];
+	setarray .@OptIDG_3[0],.@OptIDG1[.@indexG1],.@OptIDG2[.@indexG2],.@OptIDG3[.@indexG3];
+	
+	setarray .@OptVals[0],.@drandvals1,.@drandvals2,.@drandvals3;
+	setarray .@OptIDS_1[0],.@OptIDS1[.@indexS1];
+	setarray .@OptIDS_2[0],.@OptIDS1[.@indexS1],.@OptIDS2[.@indexS2];
+	setarray .@OptIDS_3[0],.@OptIDS1[.@indexS1],.@OptIDS2[.@indexS2],.@OptIDS3[.@indexS3];
+
+	setarray .@OptValb[0],.@drandvalb1,.@drandvalb2,.@drandvalb3;
+	setarray .@OptIDB_1[0],.@OptIDB1[.@indexB1];
+	setarray .@OptIDB_2[0],.@OptIDB1[.@indexB1],.@OptIDB2[.@indexB2];
+	setarray .@OptIDB_3[0],.@OptIDB1[.@indexB1],.@OptIDB2[.@indexB2],.@OptIDB3[.@indexB3];
+
+	setarray .@OptValac[0],.@drandvalac1,.@drandvalac2,.@drandvalac3;
+	setarray .@OptIDAC_1[0],.@OptIDAC1[.@indexAC1];
+	setarray .@OptIDAC_2[0],.@OptIDAC1[.@indexAC1],.@OptIDAC2[.@indexAC2];
+	setarray .@OptIDAC_3[0],.@OptIDAC1[.@indexAC1],.@OptIDAC2[.@indexAC2],.@OptIDAC3[.@indexAC3];
+
+	setarray .@OptValh[0],.@drandvalh1,.@drandvalh2,.@drandvalh3;
+	setarray .@OptIDH_1[0],.@OptIDH1[.@indexH1];
+	setarray .@OptIDH_2[0],.@OptIDH1[.@indexH1],.@OptIDH2[.@indexH2];
+	setarray .@OptIDH_3[0],.@OptIDH1[.@indexH1],.@OptIDH2[.@indexH2],.@OptIDH3[.@indexH3];
+
+
+
+	if(killedrid == @killedgid_m ) {
+
+	if (.@opt_itemid1 == 0 ) { } else {
+		if (opt_result1 >= .@roptR1min && opt_result1 <= .@roptR1max) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemid1,1,0,0,0,0,0,0,0,.@OptID_1,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_1,.@OptVal,.@OptParam;
+			}
+		} else {
+			
+		if (opt_result1 >= .@roptR2min && opt_result1 <= .@roptR2max) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemid1,1,0,0,0,0,0,0,0,.@OptID_2,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_2,.@OptVal,.@OptParam;
+			}
+		} else {
+
+		if (opt_result1 >= .@roptR3min && opt_result1 <= .@roptR3max) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemid1,1,0,0,0,0,0,0,0,.@OptID_3,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_3,.@OptVal,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemid2 == 0 ) { } else {
+		if (opt_result2 >= .@roptR1min && opt_result2 <= .@roptR1max) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemid2,1,0,0,0,0,0,0,0,.@OptID_1,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_1,.@OptVal,.@OptParam;
+			}
+		} else {
+			
+		if (opt_result2 >= .@roptR2min && opt_result2 <= .@roptR2max) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemid2,1,0,0,0,0,0,0,0,.@OptID_2,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_2,.@OptVal,.@OptParam;
+			}
+		} else {
+
+		if (opt_result2 >= .@roptR3min && opt_result2 <= .@roptR3max) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemid2,1,0,0,0,0,0,0,0,.@OptID_3,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_3,.@OptVal,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemid3 == 0 ) { } else {
+		if (opt_result3 >= .@roptR1min && opt_result3 <= .@roptR1max) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemid3,1,0,0,0,0,0,0,0,.@OptID_1,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_1,.@OptVal,.@OptParam;
+			}
+		} else {
+			
+		if (opt_result3 >= .@roptR2min && opt_result3 <= .@roptR2max) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemid3,1,0,0,0,0,0,0,0,.@OptID_2,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_2,.@OptVal,.@OptParam;
+			}
+		} else {
+
+		if (opt_result3 >= .@roptR3min && opt_result3 <= .@roptR3max) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemid3,1,0,0,0,0,0,0,0,.@OptID_3,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_3,.@OptVal,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemid4 == 0 ) { } else {
+		if (opt_result4 >= .@roptR1min && opt_result4 <= .@roptR1max) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemid4,1,0,0,0,0,0,0,0,.@OptID_1,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid4,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_1,.@OptVal,.@OptParam;
+			}
+		} else {
+			
+		if (opt_result4 >= .@roptR2min && opt_result4 <= .@roptR2max) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemid4,1,0,0,0,0,0,0,0,.@OptID_2,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid4,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_2,.@OptVal,.@OptParam;
+			}
+		} else {
+
+		if (opt_result4 >= .@roptR3min && opt_result4 <= .@roptR3max) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemid4,1,0,0,0,0,0,0,0,.@OptID_3,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid4,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_3,.@OptVal,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+	if (.@opt_itemid5 == 0 ) { } else {
+		if (opt_result5 >= .@roptR1min && opt_result5 <= .@roptR1max) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemid5,1,0,0,0,0,0,0,0,.@OptID_1,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid5,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_1,.@OptVal,.@OptParam;
+			}
+		} else {
+			
+		if (opt_result5 >= .@roptR2min && opt_result5 <= .@roptR2max) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemid5,1,0,0,0,0,0,0,0,.@OptID_2,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid5,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_2,.@OptVal,.@OptParam;
+			}
+		} else {
+
+		if (opt_result5 >= .@roptR3min && opt_result5 <= .@roptR3max) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemid5,1,0,0,0,0,0,0,0,.@OptID_3,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid5,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_3,.@OptVal,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+	if (.@opt_itemid6 == 0 ) { } else {
+		if (opt_result6 >= .@roptR1min && opt_result6 <= .@roptR1max) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemid6,1,0,0,0,0,0,0,0,.@OptID_1,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid6,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_1,.@OptVal,.@OptParam;
+			}
+		} else {
+			
+		if (opt_result6 >= .@roptR2min && opt_result6 <= .@roptR2max) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemid6,1,0,0,0,0,0,0,0,.@OptID_2,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid6,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_2,.@OptVal,.@OptParam;
+			}
+		} else {
+
+		if (opt_result6 >= .@roptR3min && opt_result6 <= .@roptR3max) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemid6,1,0,0,0,0,0,0,0,.@OptID_3,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid6,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_3,.@OptVal,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+	if (.@opt_itemid7 == 0 ) { } else {
+		if (opt_result7 >= .@roptR1min && opt_result7 <= .@roptR1max) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemid7,1,0,0,0,0,0,0,0,.@OptID_1,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid7,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_1,.@OptVal,.@OptParam;
+			}
+		} else {
+			
+		if (opt_result7 >= .@roptR2min && opt_result7 <= .@roptR2max) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemid7,1,0,0,0,0,0,0,0,.@OptID_2,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid7,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_2,.@OptVal,.@OptParam;
+			}
+		} else {
+
+		if (opt_result7 >= .@roptR3min && opt_result7 <= .@roptR3max) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemid7,1,0,0,0,0,0,0,0,.@OptID_3,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid7,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_3,.@OptVal,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+	if (.@opt_itemida1 == 0 ) { } else {
+		if (opt_resulta1 >= .@roptR1min && opt_resulta1 <= .@roptR1max) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemida1,1,0,0,0,0,0,0,0,.@OptIDA_1,.@OptVala,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemida1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDA_1,.@OptVala,.@OptParam;
+			}
+		} else {
+			
+		if (opt_resulta1 >= .@roptR2min && opt_resulta1 <= .@roptR2max) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemida1,1,0,0,0,0,0,0,0,.@OptIDA_2,.@OptVala,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemida1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDA_2,.@OptVala,.@OptParam;
+			}
+		} else {
+
+		if (opt_resulta1 >= .@roptR3min && opt_resulta1 <= .@roptR3max) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemida1,1,0,0,0,0,0,0,0,.@OptIDA_3,.@OptVala,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemida1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDA_3,.@OptVala,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemida2 == 0 ) { } else {
+		if (opt_resulta2 >= .@roptR1min && opt_resulta2 <= .@roptR1max) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemida2,1,0,0,0,0,0,0,0,.@OptIDA_1,.@OptVala,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemida2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDA_1,.@OptVala,.@OptParam;
+			}
+		} else {
+			
+		if (opt_resulta2 >= .@roptR2min && opt_resulta2 <= .@roptR2max) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemida2,1,0,0,0,0,0,0,0,.@OptIDA_2,.@OptVala,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemida2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDA_2,.@OptVala,.@OptParam;
+			}
+		} else {
+
+		if (opt_resulta2 >= .@roptR3min && opt_resulta2 <= .@roptR3max) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemida2,1,0,0,0,0,0,0,0,.@OptIDA_3,.@OptVala,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemida2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDA_3,.@OptVala,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemida3 == 0 ) { } else {
+		if (opt_resulta3 >= .@roptR1min && opt_resulta3 <= .@roptR1max) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemida3,1,0,0,0,0,0,0,0,.@OptIDA_1,.@OptVala,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemida3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDA_1,.@OptVala,.@OptParam;
+			}
+		} else {
+			
+		if (opt_resulta3 >= .@roptR2min && opt_resulta3 <= .@roptR2max) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemida3,1,0,0,0,0,0,0,0,.@OptIDA_2,.@OptVala,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemida3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDA_2,.@OptVala,.@OptParam;
+			}
+		} else {
+
+		if (opt_resulta3 >= .@roptR3min && opt_resulta3 <= .@roptR3max) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemida3,1,0,0,0,0,0,0,0,.@OptIDA_3,.@OptVala,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemida3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDA_3,.@OptVala,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemidg1 == 0 ) { } else {
+		if (opt_resultg1 >= .@roptR1min && opt_resultg1 <= .@roptR1max) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemidg1,1,0,0,0,0,0,0,0,.@OptIDG_1,.@OptValg,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidg1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDG_1,.@OptValg,.@OptParam;
+			}
+		} else {
+			
+		if (opt_resultg1 >= .@roptR2min && opt_resultg1 <= .@roptR2max) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemidg1,1,0,0,0,0,0,0,0,.@OptIDG_2,.@OptValg,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidg1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDG_2,.@OptValg,.@OptParam;
+			}
+		} else {
+
+		if (opt_resultg1 >= .@roptR3min && opt_resultg1 <= .@roptR3max) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemidg1,1,0,0,0,0,0,0,0,.@OptIDG_3,.@OptValg,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidg1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDG_3,.@OptValg,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemidg2 == 0 ) { } else {
+		if (opt_resultg2 >= .@roptR1min && opt_resultg2 <= .@roptR1max) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemidg2,1,0,0,0,0,0,0,0,.@OptIDG_1,.@OptValg,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidg2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDG_1,.@OptValg,.@OptParam;
+			}
+		} else {
+			
+		if (opt_resultg2 >= .@roptR2min && opt_resultg2 <= .@roptR2max) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemidg2,1,0,0,0,0,0,0,0,.@OptIDG_2,.@OptValg,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidg2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDG_2,.@OptValg,.@OptParam;
+			}
+		} else {
+
+		if (opt_resultg2 >= .@roptR3min && opt_resultg2 <= .@roptR3max) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemidg2,1,0,0,0,0,0,0,0,.@OptIDG_3,.@OptValg,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidg2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDG_3,.@OptValg,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemidg3 == 0 ) { } else {
+		if (opt_resultg3 >= .@roptR1min && opt_resultg3 <= .@roptR1max) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemidg3,1,0,0,0,0,0,0,0,.@OptIDG_1,.@OptValg,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidg3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDG_1,.@OptValg,.@OptParam;
+			}
+		} else {
+			
+		if (opt_resultg3 >= .@roptR2min && opt_resultg3 <= .@roptR2max) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemidg3,1,0,0,0,0,0,0,0,.@OptIDG_2,.@OptValg,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidg3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDG_2,.@OptValg,.@OptParam;
+			}
+		} else {
+
+		if (opt_resultg3 >= .@roptR3min && opt_resultg3 <= .@roptR3max) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemidg3,1,0,0,0,0,0,0,0,.@OptIDG_3,.@OptValg,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidg3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDG_3,.@OptValg,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+	if (.@opt_itemids1 == 0 ) { } else {
+		if (opt_results1 >= .@roptR1min && opt_results1 <= .@roptR1max) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemids1,1,0,0,0,0,0,0,0,.@OptIDS_1,.@OptVals,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemids1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDS_1,.@OptVals,.@OptParam;
+			}
+		} else {
+			
+		if (opt_results1 >= .@roptR2min && opt_results1 <= .@roptR2max) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemids1,1,0,0,0,0,0,0,0,.@OptIDS_2,.@OptVals,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemids1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDS_2,.@OptVals,.@OptParam;
+			}
+		} else {
+
+		if (opt_results1 >= .@roptR3min && opt_results1 <= .@roptR3max) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemids1,1,0,0,0,0,0,0,0,.@OptIDS_3,.@OptVals,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemids1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDS_3,.@OptVals,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemids2 == 0 ) { } else {
+		if (opt_results2 >= .@roptR1min && opt_results2 <= .@roptR1max) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemids2,1,0,0,0,0,0,0,0,.@OptIDS_1,.@OptVals,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemids2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDS_1,.@OptVals,.@OptParam;
+			}
+		} else {
+			
+		if (opt_results2 >= .@roptR2min && opt_results2 <= .@roptR2max) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemids2,1,0,0,0,0,0,0,0,.@OptIDS_2,.@OptVals,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemids2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDS_2,.@OptVals,.@OptParam;
+			}
+		} else {
+
+		if (opt_results2 >= .@roptR3min && opt_results2 <= .@roptR3max) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemids2,1,0,0,0,0,0,0,0,.@OptIDS_3,.@OptVals,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemids2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDS_3,.@OptVals,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemids3 == 0 ) { } else {
+		if (opt_results3 >= .@roptR1min && opt_results3 <= .@roptR1max) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemids3,1,0,0,0,0,0,0,0,.@OptIDS_1,.@OptVals,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemids3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDS_1,.@OptVals,.@OptParam;
+			}
+		} else {
+			
+		if (opt_results3 >= .@roptR2min && opt_results3 <= .@roptR2max) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemids3,1,0,0,0,0,0,0,0,.@OptIDS_2,.@OptVals,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemids3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDS_2,.@OptVals,.@OptParam;
+			}
+		} else {
+
+		if (opt_results3 >= .@roptR3min && opt_results3 <= .@roptR3max) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemids3,1,0,0,0,0,0,0,0,.@OptIDS_3,.@OptVals,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemids3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDS_3,.@OptVals,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+	if (.@opt_itemidb1 == 0 ) { } else {
+		if (opt_resultb1 >= .@roptR1min && opt_resultb1 <= .@roptR1max) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemidb1,1,0,0,0,0,0,0,0,.@OptIDB_1,.@OptValb,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidb1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDB_1,.@OptValb,.@OptParam;
+			}
+		} else {
+			
+		if (opt_resultb1 >= .@roptR2min && opt_resultb1 <= .@roptR2max) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemidb1,1,0,0,0,0,0,0,0,.@OptIDB_2,.@OptValb,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidb1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDB_2,.@OptValb,.@OptParam;
+			}
+		} else {
+
+		if (opt_resultb1 >= .@roptR3min && opt_resultb1 <= .@roptR3max) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemidb1,1,0,0,0,0,0,0,0,.@OptIDB_3,.@OptValb,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidb1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDB_3,.@OptValb,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemidb2 == 0 ) { } else {
+		if (opt_resultb2 >= .@roptR1min && opt_resultb2 <= .@roptR1max) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemidb2,1,0,0,0,0,0,0,0,.@OptIDB_1,.@OptValb,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidb2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDB_1,.@OptValb,.@OptParam;
+			}
+		} else {
+			
+		if (opt_resultb2 >= .@roptR2min && opt_resultb2 <= .@roptR2max) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemidb2,1,0,0,0,0,0,0,0,.@OptIDB_2,.@OptValb,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidb2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDB_2,.@OptValb,.@OptParam;
+			}
+		} else {
+
+		if (opt_resultb2 >= .@roptR3min && opt_resultb2 <= .@roptR3max) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemidb2,1,0,0,0,0,0,0,0,.@OptIDB_3,.@OptValb,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidb2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDB_3,.@OptValb,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemidb3 == 0 ) { } else {
+		if (opt_resultb3 >= .@roptR1min && opt_resultb3 <= .@roptR1max) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemidb3,1,0,0,0,0,0,0,0,.@OptIDB_1,.@OptValb,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidb3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDB_1,.@OptValb,.@OptParam;
+			}
+		} else {
+			
+		if (opt_resultb3 >= .@roptR2min && opt_resultb3 <= .@roptR2max) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemidb3,1,0,0,0,0,0,0,0,.@OptIDB_2,.@OptValb,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidb3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDB_2,.@OptValb,.@OptParam;
+			}
+		} else {
+
+		if (opt_resultb3 >= .@roptR3min && opt_resultb3 <= .@roptR3max) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemidb3,1,0,0,0,0,0,0,0,.@OptIDB_3,.@OptValb,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidb3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDB_3,.@OptValb,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+	if (.@opt_itemidac1 == 0 ) { } else {
+		if (opt_resultac1 >= .@roptR1min && opt_resultac1 <= .@roptR1max) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemidac1,1,0,0,0,0,0,0,0,.@OptIDAC_1,.@OptValac,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidac1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDAC_1,.@OptValac,.@OptParam;
+			}
+		} else {
+			
+		if (opt_resultac1 >= .@roptR2min && opt_resultac1 <= .@roptR2max) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemidac1,1,0,0,0,0,0,0,0,.@OptIDAC_2,.@OptValac,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidac1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDAC_2,.@OptValac,.@OptParam;
+			}
+		} else {
+
+		if (opt_resultac1 >= .@roptR3min && opt_resultac1 <= .@roptR3max) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemidac1,1,0,0,0,0,0,0,0,.@OptIDAC_3,.@OptValac,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidac1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDAC_3,.@OptValac,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemidac2 == 0 ) { } else {
+		if (opt_resultac2 >= .@roptR1min && opt_resultac2 <= .@roptR1max) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemidac2,1,0,0,0,0,0,0,0,.@OptIDAC_1,.@OptValac,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidac2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDAC_1,.@OptValac,.@OptParam;
+			}
+		} else {
+			
+		if (opt_resultac2 >= .@roptR2min && opt_resultac2 <= .@roptR2max) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemidac2,1,0,0,0,0,0,0,0,.@OptIDAC_2,.@OptValac,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidac2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDAC_2,.@OptValac,.@OptParam;
+			}
+		} else {
+
+		if (opt_resultac2 >= .@roptR3min && opt_resultac2 <= .@roptR3max) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemidac2,1,0,0,0,0,0,0,0,.@OptIDAC_3,.@OptValac,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidac2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDAC_3,.@OptValac,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemidac3 == 0 ) { } else {
+		if (opt_resultac3 >= .@roptR1min && opt_resultac3 <= .@roptR1max) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemidac3,1,0,0,0,0,0,0,0,.@OptIDAC_1,.@OptValac,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidac3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDAC_1,.@OptValac,.@OptParam;
+			}
+		} else {
+			
+		if (opt_resultac3 >= .@roptR2min && opt_resultac3 <= .@roptR2max) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemidac3,1,0,0,0,0,0,0,0,.@OptIDAC_2,.@OptValac,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidac3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDAC_2,.@OptValac,.@OptParam;
+			}
+		} else {
+
+		if (opt_resultac3 >= .@roptR3min && opt_resultac3 <= .@roptR3max) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemidac3,1,0,0,0,0,0,0,0,.@OptIDAC_3,.@OptValac,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidac3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDAC_3,.@OptValac,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+	if (.@opt_itemidh1 == 0 ) { } else {
+		if (opt_resulth1 >= .@roptR1min && opt_resulth1 <= .@roptR1max) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemidh1,1,0,0,0,0,0,0,0,.@OptIDH_1,.@OptValh,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidh1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDH_1,.@OptValh,.@OptParam;
+			}
+		} else {
+			
+		if (opt_resulth1 >= .@roptR2min && opt_resulth1 <= .@roptR2max) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemidh1,1,0,0,0,0,0,0,0,.@OptIDH_2,.@OptValh,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidh1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDH_2,.@OptValh,.@OptParam;
+			}
+		} else {
+
+		if (opt_resulth1 >= .@roptR3min && opt_resulth1 <= .@roptR3max) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemidh1,1,0,0,0,0,0,0,0,.@OptIDH_3,.@OptValh,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidh1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDH_3,.@OptValh,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemidh2 == 0 ) { } else {
+		if (opt_resulth2 >= .@roptR1min && opt_resulth2 <= .@roptR1max) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemidh2,1,0,0,0,0,0,0,0,.@OptIDH_1,.@OptValh,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidh2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDH_1,.@OptValh,.@OptParam;
+			}
+		} else {
+			
+		if (opt_resulth2 >= .@roptR2min && opt_resulth2 <= .@roptR2max) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemidh2,1,0,0,0,0,0,0,0,.@OptIDH_2,.@OptValh,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidh2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDH_2,.@OptValh,.@OptParam;
+			}
+		} else {
+
+		if (opt_resulth2 >= .@roptR3min && opt_resulth2 <= .@roptR3max) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemidh2,1,0,0,0,0,0,0,0,.@OptIDH_3,.@OptValh,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidh2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDH_3,.@OptValh,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemidh3 == 0 ) { } else {
+		if (opt_resulth3 >= .@roptR1min && opt_resulth3 <= .@roptR1max) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemidh3,1,0,0,0,0,0,0,0,.@OptIDH_1,.@OptValh,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidh3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDH_1,.@OptValh,.@OptParam;
+			}
+		} else {
+			
+		if (opt_resulth3 >= .@roptR2min && opt_resulth3 <= .@roptR2max) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemidh3,1,0,0,0,0,0,0,0,.@OptIDH_2,.@OptValh,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidh3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDH_2,.@OptValh,.@OptParam;
+			}
+		} else {
+
+		if (opt_resulth3 >= .@roptR3min && opt_resulth3 <= .@roptR3max) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemidh3,1,0,0,0,0,0,0,0,.@OptIDH_3,.@OptValh,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidh3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDH_3,.@OptValh,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+}
+end;
+}
+
+

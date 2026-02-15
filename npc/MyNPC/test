@@ -1,0 +1,137 @@
+
+
+prontera,158,185,5	script	khfskjdfh2	1_F_MARIA,{
+
+	setarray .@OptIDH1[0],3,4,5,6,7,8;
+		for (.@i = 0; .@i < 6; .@i++) {
+		.@indexH1 = rand(getarraysize(.@OptIDH1));
+		}
+
+	setarray .@OptIDH2[0],17,18,19,24;
+		for (.@e = 0; .@e < 4; .@e++) {
+		.@indexH2 = rand(getarraysize(.@OptIDH2));
+		}
+
+	setarray .@OptIDH3[0],114,124,104,166,168,170;
+		for (.@a = 0; .@a < 6; .@a++) {
+		.@indexH3 = rand(getarraysize(.@OptIDH3));
+		}
+
+
+	set .@drandvalh1,rand(1,10);	// <==============// HEADGEAR Random Value Option 1
+	set .@drandvalh2,rand(10,20);	// <==============// HEADGEAR Random Value Option 2
+	set .@drandvalh3,rand(20,30);	// <==============// HEADGEAR Random Value Option 3
+
+	setarray .@OptValh[0],.@drandvalh1,.@drandvalh2,.@drandvalh3;
+	setarray .@OptIDH_1[0],.@OptIDH1[.@indexH1];
+	setarray .@OptIDH_2[0],.@OptIDH1[.@indexH1],.@OptIDH2[.@indexH2];
+	setarray .@OptIDH_3[0],.@OptIDH1[.@indexH1],.@OptIDH2[.@indexH2],.@OptIDH3[.@indexH3];
+	setarray .@OptParam[0],0;
+
+
+	setarray .@indices[1], EQI_HEAD_TOP, EQI_ARMOR, EQI_HAND_L, EQI_HAND_R, EQI_GARMENT, EQI_SHOES, EQI_ACC_L, EQI_ACC_R, EQI_HEAD_MID, EQI_HEAD_LOW;
+	for(.@i = 1; .@i<getarraysize(.@indices); ++.@i) {
+		if(getequipisequiped(.@indices[.@i])) {
+			.@menu$ = .@menu$ + F_getpositionname(.@indices[.@i]) + "-[" + getequipname(.@indices[.@i]) + "]";
+			.@equipped = 1;
+		}
+
+		.@menu$ = .@menu$ + ":";
+}
+
+	.@part = .@indices[select(.@menu$)];
+	set .@geteqsuit,.@part;
+	set .@geid,getequipid(.@part);
+	set .@gerf,getequiprefinerycnt(.@part);
+	set .@crd1,getequipcardid(.@part,0);
+	set .@crd2,getequipcardid(.@part,1);
+	set .@crd3,getequipcardid(.@part,2);
+	set .@crd4,getequipcardid(.@part,3);
+	set .@opt_getitem,rand(1,100);
+
+
+	if( .@geteqsuit == 0 ) { set .@equipid,128; }
+	if( .@geteqsuit == 1 ) { set .@equipid,8; }
+	if( .@geteqsuit == 2 ) { set .@equipid,64; }
+	if( .@geteqsuit == 3 ) { set .@equipid,4; }
+	if( .@geteqsuit == 4 ) { set .@equipid,1; }
+	if( .@geteqsuit == 5 ) { set .@equipid,512; }
+	if( .@geteqsuit == 6 ) { set .@equipid,256; }
+	if( .@geteqsuit == 7 ) { set .@equipid,16; }
+	if( .@geteqsuit == 8 ) { set .@equipid,32; }
+	if( .@geteqsuit == 9 ) { set .@equipid,2; }
+
+	getinventorylist;
+	for ( .@i = 0; .@i < @inventorylist_count; ++.@i ) {
+		if ( (@inventorylist_equip[.@i] & .@equipid) && @inventorylist_refine[.@i] >= 0 ) {
+			if ( @inventorylist_option_id1[.@i] ) { // that's why rathena random option check so sux, still has to fall back to delitem2
+				setarray .@option_id, @inventorylist_option_id1[.@i], @inventorylist_option_id2[.@i], @inventorylist_option_id3[.@i], @inventorylist_option_id4[.@i], @inventorylist_option_id5[.@i];
+				setarray .@option_value, @inventorylist_option_value1[.@i], @inventorylist_option_value2[.@i], @inventorylist_option_value3[.@i], @inventorylist_option_value4[.@i], @inventorylist_option_value5[.@i];
+				setarray .@option_parameter, @inventorylist_option_parameter1[.@i], @inventorylist_option_parameter2[.@i], @inventorylist_option_parameter3[.@i], @inventorylist_option_parameter4[.@i], @inventorylist_option_parameter5[.@i];
+				delitem3 @inventorylist_id[.@i], 1, @inventorylist_identify[.@i], @inventorylist_refine[.@i], @inventorylist_attribute[.@i], @inventorylist_card1[.@i], @inventorylist_card2[.@i], @inventorylist_card3[.@i], @inventorylist_card4[.@i], .@option_id, .@option_value, .@option_parameter;
+		}
+			else
+				delitem2 @inventorylist_id[.@i], 1, @inventorylist_identify[.@i], @inventorylist_refine[.@i], @inventorylist_attribute[.@i], @inventorylist_card1[.@i], @inventorylist_card2[.@i], @inventorylist_card3[.@i], @inventorylist_card4[.@i];
+if (.@opt_getitem >= 31 && .@opt_getitem <= 100)
+	//getitem3 .@geid,1,1,.@gerf,0,.@crd1,.@crd2,.@crd3,.@crd4,.@OptIDH_1,.@OptValh,.@OptParam;
+	getitem3 @inventorylist_id[.@i], 1, @inventorylist_identify[.@i], @inventorylist_refine[.@i], @inventorylist_attribute[.@i], @inventorylist_card1[.@i], @inventorylist_card2[.@i], @inventorylist_card3[.@i], @inventorylist_card4[.@i],.@OptIDH_1,.@OptValh,.@OptParam;
+if (.@opt_getitem >= 11 && .@opt_getitem <= 30)
+	//getitem3 .@geid,1,1,.@gerf,0,.@crd1,.@crd2,.@crd3,.@crd4,.@OptIDH_2,.@OptValh,.@OptParam;
+	getitem3 @inventorylist_id[.@i], 1, @inventorylist_identify[.@i], @inventorylist_refine[.@i], @inventorylist_attribute[.@i], @inventorylist_card1[.@i], @inventorylist_card2[.@i], @inventorylist_card3[.@i], @inventorylist_card4[.@i],.@OptIDH_2,.@OptValh,.@OptParam;
+if (.@opt_getitem >= 1 && .@opt_getitem <= 10)
+	//getitem3 .@geid,1,1,.@gerf,0,.@crd1,.@crd2,.@crd3,.@crd4,.@OptIDH_3,.@OptValh,.@OptParam;
+	getitem3 @inventorylist_id[.@i], 1, @inventorylist_identify[.@i], @inventorylist_refine[.@i], @inventorylist_attribute[.@i], @inventorylist_card1[.@i], @inventorylist_card2[.@i], @inventorylist_card3[.@i], @inventorylist_card4[.@i],.@OptIDH_3,.@OptValh,.@OptParam;
+end;
+		}
+
+	}
+	end;
+}
+
+
+
+
+	mes .@part;
+	mes .@geid;
+	mes .@gerf;
+	mes .@randOPT;
+	mes .@opt_getitem;
+end;
+}
+
+
+
+
+if (.@opt_getitem >= 31 && .@opt_getitem <= 100)
+	getitem3 .@geid,1,1,.@gerf,0,.@crd1,.@crd2,.@crd3,.@crd4,.@OptIDH_1,.@OptValh,.@OptParam;
+if (.@opt_getitem >= 11 && .@opt_getitem <= 30)
+	getitem3 .@geid,1,1,.@gerf,0,.@crd1,.@crd2,.@crd3,.@crd4,.@OptIDH_2,.@OptValh,.@OptParam;
+if (.@opt_getitem >= 1 && .@opt_getitem <= 10)
+	getitem3 .@geid,1,1,.@gerf,0,.@crd1,.@crd2,.@crd3,.@crd4,.@OptIDH_3,.@OptValh,.@OptParam;
+
+
+prontera,158,185,5	script	khfskjdfh2	1_F_MARIA,{
+
+
+
+
+
+
+	set .@geid,getequipid(1);
+	set .@geid,getequipid(9);
+	set .@geid,getequipid(10);
+
+	set .@gerf,getequiprefinerycnt(10);
+	set .@crd1,getequipcardid(10,0);
+	set .@crd2,getequipcardid(10,1);
+	set .@crd3,getequipcardid(10,2);
+	set .@crd4,getequipcardid(10,3);
+
+
+	if (.@opt_itemid1 == 0 ) { } else {
+				getitem3 .@opt_itemid1,1,0,0,0,0,0,0,0,.@OptID_1,.@OptVal,.@OptParam;
+			}
+
+
+
+

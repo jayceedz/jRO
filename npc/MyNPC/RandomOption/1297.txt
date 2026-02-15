@@ -1,0 +1,1072 @@
+
+//==========================// Palitan mo ung sample ng name ng monster kunwari Poring //==========================//
+//==========================// tas save mo name poring.txt kung anong name ng monster //==========================//
+
+-	script	1297	-1,{
+
+
+OnNPCKillEvent:
+
+	//==========================// Monster ID //==========================// 
+
+	set .@mobid,1297;		// <==============// MONSTER ID 
+
+	//==========================// Item ID //==========================// 
+
+	set .@opt_itemid1,0;		// <==============// WEAPON ITEM ID  1
+	set .@opt_itemid2,0;		// <==============// WEAPON ITEM ID  2
+	set .@opt_itemid3,0;		// <==============// WEAPON ITEM ID  3
+	set .@opt_itemid4,0;		// <==============// WEAPON ITEM ID  4
+	set .@opt_itemid5,0;		// <==============// WEAPON ITEM ID  5
+	set .@opt_itemid6,0;		// <==============// WEAPON ITEM ID  6
+	set .@opt_itemid7,0;		// <==============// WEAPON ITEM ID  7
+
+	set .@opt_itemida1,0;		// <==============// ARMOR ITEM ID  1
+	set .@opt_itemida2,0;		// <==============// ARMOR ITEM ID  2
+	set .@opt_itemida3,0;		// <==============// ARMOR ITEM ID  3
+
+	set .@opt_itemidg1,0;		// <==============// GARMENT ITEM ID  1
+	set .@opt_itemidg2,0;		// <==============// GARMENT ITEM ID  2
+	set .@opt_itemidg3,0;		// <==============// GARMENT ITEM ID  3
+
+	set .@opt_itemids1,0;		// <==============// SHIELD ITEM ID  1
+	set .@opt_itemids2,0;		// <==============// SHIELD ITEM ID  2
+	set .@opt_itemids3,0;		// <==============// SHIELD ITEM ID  3
+
+	set .@opt_itemidb1,0;		// <==============// BOOTS ITEM ID  1
+	set .@opt_itemidb2,0;		// <==============// BOOTS ITEM ID  2
+	set .@opt_itemidb3,0;		// <==============// BOOTS ITEM ID  3
+
+	set .@opt_itemidac1,2624;		// <==============// ACCESSORY ITEM ID  1
+	set .@opt_itemidac2,2611;		// <==============// ACCESSORY ITEM ID  2
+	set .@opt_itemidac3,0;		// <==============// ACCESSORY ITEM ID  3
+
+	set .@opt_itemidh1,0;		// <==============// HEADGEAR ITEM ID  1
+	set .@opt_itemidh2,0;		// <==============// HEADGEAR ITEM ID  2
+	set .@opt_itemidh3,0;		// <==============// HEADGEAR ITEM ID  3
+
+
+	//==========================// Drop Rate //==========================// 
+
+	set opt_result1,rand(1,300);	// <==============// WEAPON Drop Rate ITEM 1
+	set opt_result2,rand(1,300);	// <==============// WEAPON Drop Rate ITEM 2
+	set opt_result3,rand(1,300);	// <==============// WEAPON Drop Rate ITEM 3
+	set opt_result4,rand(1,300);	// <==============// WEAPON Drop Rate ITEM 4
+	set opt_result5,rand(1,300);	// <==============// WEAPON Drop Rate ITEM 5
+	set opt_result6,rand(1,300);	// <==============// WEAPON Drop Rate ITEM 6
+	set opt_result7,rand(1,300);	// <==============// WEAPON Drop Rate ITEM 7
+
+	set opt_resulta1,rand(1,300);	// <==============// ARMOR Drop Rate ITEM 1
+	set opt_resulta2,rand(1,300);	// <==============// ARMOR Drop Rate ITEM 2
+	set opt_resulta3,rand(1,300);	// <==============// ARMOR Drop Rate ITEM 3
+
+	set opt_resultg1,rand(1,300);	// <==============// GARMENT Drop Rate ITEM 1
+	set opt_resultg2,rand(1,300);	// <==============// GARMENT Drop Rate ITEM 2
+	set opt_resultg3,rand(1,300);	// <==============// GARMENT Drop Rate ITEM 3
+
+	set opt_results1,rand(1,300);	// <==============// SHIELD Drop Rate ITEM 1
+	set opt_results2,rand(1,300);	// <==============// SHIELD Drop Rate ITEM 2
+	set opt_results3,rand(1,300);	// <==============// SHIELD Drop Rate ITEM 3
+
+	set opt_resultb1,rand(1,300);	// <==============// BOOTS Drop Rate ITEM 1
+	set opt_resultb2,rand(1,300);	// <==============// BOOTS Drop Rate ITEM 2
+	set opt_resultb3,rand(1,300);	// <==============// BOOTS Drop Rate ITEM 3
+
+	set opt_resultac1,rand(1,300);	// <==============// ACCESSORY Drop Rate ITEM 1
+	set opt_resultac2,rand(1,300);	// <==============// ACCESSORY Drop Rate ITEM 2
+	set opt_resultac3,rand(1,300);	// <==============// ACCESSORY Drop Rate ITEM 3
+
+	set opt_resulth1,rand(1,300);	// <==============// HEADGEAR Drop Rate ITEM 1
+	set opt_resulth2,rand(1,300);	// <==============// HEADGEAR Drop Rate ITEM 2
+	set opt_resulth3,rand(1,300);	// <==============// HEADGEAR Drop Rate ITEM 3
+
+
+	//==========================// Random Value //==========================// 
+
+	set .@drandval1,rand(1,5);	// <==============// WEAPON Random Value Option 1
+	set .@drandval2,rand(10,25);	// <==============// WEAPON Random Value Option 2
+	set .@drandval3,rand(1,5);	// <==============// WEAPON Random Value Option 3
+
+	set .@drandvala1,rand(1,5);	// <==============// ARMOR Random Value Option 1
+	set .@drandvala2,rand(10,25);	// <==============// ARMOR Random Value Option 2
+	set .@drandvala3,rand(1,5);	// <==============// ARMOR Random Value Option 3
+
+	set .@drandvalg1,rand(1,5);	// <==============// GARMENT Random Value Option 1
+	set .@drandvalg2,rand(10,25);	// <==============// GARMENT Random Value Option 2
+	set .@drandvalg3,rand(1,5);	// <==============// GARMENT Random Value Option 3
+
+	set .@drandvals1,rand(1,5);	// <==============// SHIELD Random Value Option 1
+	set .@drandvals2,rand(10,25);	// <==============// SHIELD Random Value Option 2
+	set .@drandvals3,rand(1,5);	// <==============// SHIELD Random Value Option 3
+
+	set .@drandvalb1,rand(1,5);	// <==============// BOOTS Random Value Option 1
+	set .@drandvalb2,rand(10,25);	// <==============// BOOTS Random Value Option 2
+	set .@drandvalb3,rand(1,5);	// <==============// BOOTS Random Value Option 3
+
+	set .@drandvalac1,rand(1,5);	// <==============// ACCESSORY Random Value Option 1
+	set .@drandvalac2,rand(10,25);	// <==============// ACCESSORY Random Value Option 2
+	set .@drandvalac3,rand(1,5);	// <==============// ACCESSORY Random Value Option 3
+
+	set .@drandvalh1,rand(1,5);	// <==============// HEADGEAR Random Value Option 1
+	set .@drandvalh2,rand(10,25);	// <==============// HEADGEAR Random Value Option 2
+	set .@drandvalh3,rand(1,5);	// <==============// HEADGEAR Random Value Option 3
+
+	setarray .@OptParam[0],0;
+	
+
+
+	//==========================// Weapon Option ID //==========================// 
+
+	setarray .@OptID1[0],3,4,5,6,7,8;
+		for (.@i = 0; .@i < 6; .@i++) {
+		.@index1 = rand(getarraysize(.@OptID1));
+		}
+
+	setarray .@OptID2[0],17,18,19,24;
+		for (.@e = 0; .@e < 4; .@e++) {
+		.@index2 = rand(getarraysize(.@OptID2));
+		}
+
+	setarray .@OptID3[0],114,124,104,166,168,170;
+		for (.@a = 0; .@a < 6; .@a++) {
+		.@index3 = rand(getarraysize(.@OptID3));
+		}
+
+	//==========================// Armor Option ID //==========================// 
+
+	setarray .@OptIDA1[0],3,4,5,6,7,8;
+		for (.@i = 0; .@i < 6; .@i++) {
+		.@indexA1 = rand(getarraysize(.@OptIDA1));
+		}
+
+	setarray .@OptIDA2[0],17,18,19,24;
+		for (.@e = 0; .@e < 4; .@e++) {
+		.@indexA2 = rand(getarraysize(.@OptIDA2));
+		}
+
+	setarray .@OptIDA3[0],114,124,104,166,168,170;
+		for (.@a = 0; .@a < 6; .@a++) {
+		.@indexA3 = rand(getarraysize(.@OptIDA3));
+		}
+
+	//==========================// Garment Option ID //==========================// 
+
+	setarray .@OptIDG1[0],3,4,5,6,7,8;
+		for (.@i = 0; .@i < 6; .@i++) {
+		.@indexG1 = rand(getarraysize(.@OptIDG1));
+		}
+
+	setarray .@OptIDG2[0],17,18,19,24;
+		for (.@e = 0; .@e < 4; .@e++) {
+		.@indexG2 = rand(getarraysize(.@OptIDG2));
+		}
+
+	setarray .@OptIDG3[0],114,124,104,166,168,170;
+		for (.@a = 0; .@a < 6; .@a++) {
+		.@indexG3 = rand(getarraysize(.@OptIDG3));
+		}
+
+	//==========================// Shield Option ID //==========================// 
+
+	setarray .@OptIDS1[0],3,4,5,6,7,8;
+		for (.@i = 0; .@i < 6; .@i++) {
+		.@indexS1 = rand(getarraysize(.@OptIDS1));
+		}
+
+	setarray .@OptIDS2[0],17,18,19,24;
+		for (.@e = 0; .@e < 4; .@e++) {
+		.@indexS2 = rand(getarraysize(.@OptIDS2));
+		}
+
+	setarray .@OptIDS3[0],114,124,104,166,168,170;
+		for (.@a = 0; .@a < 6; .@a++) {
+		.@indexS3 = rand(getarraysize(.@OptIDS3));
+		}
+	
+	//==========================// Boots Option ID //==========================// 
+
+	setarray .@OptIDB1[0],3,4,5,6,7,8;
+		for (.@i = 0; .@i < 6; .@i++) {
+		.@indexB1 = rand(getarraysize(.@OptIDB1));
+		}
+
+	setarray .@OptIDB2[0],17,18,19,24;
+		for (.@e = 0; .@e < 4; .@e++) {
+		.@indexB2 = rand(getarraysize(.@OptIDB2));
+		}
+
+	setarray .@OptIDB3[0],114,124,104,166,168,170;
+		for (.@a = 0; .@a < 6; .@a++) {
+		.@indexB3 = rand(getarraysize(.@OptIDB3));
+		}
+
+	//==========================// Accessory Option ID //==========================// 
+
+	setarray .@OptIDAC1[0],3,4,5,6,7,8;
+		for (.@i = 0; .@i < 6; .@i++) {
+		.@indexAC1 = rand(getarraysize(.@OptIDAC1));
+		}
+
+	setarray .@OptIDAC2[0],17,18,19,24;
+		for (.@e = 0; .@e < 4; .@e++) {
+		.@indexAC2 = rand(getarraysize(.@OptIDAC2));
+		}
+
+	setarray .@OptIDAC3[0],114,124,104,166,168,170;
+		for (.@a = 0; .@a < 6; .@a++) {
+		.@indexAC3 = rand(getarraysize(.@OptIDAC3));
+		}
+
+	//==========================// Headgear Option ID //==========================// 
+
+	setarray .@OptIDH1[0],3,4,5,6,7,8;
+		for (.@i = 0; .@i < 6; .@i++) {
+		.@indexH1 = rand(getarraysize(.@OptIDH1));
+		}
+
+	setarray .@OptIDH2[0],17,18,19,24;
+		for (.@e = 0; .@e < 4; .@e++) {
+		.@indexH2 = rand(getarraysize(.@OptIDH2));
+		}
+
+	setarray .@OptIDH3[0],114,124,104,166,168,170;
+		for (.@a = 0; .@a < 6; .@a++) {
+		.@indexH3 = rand(getarraysize(.@OptIDH3));
+		}
+
+
+	setarray .@OptVal[0],.@drandval1,.@drandval2,.@drandval3;
+	setarray .@OptID_1[0],.@OptID1[.@index1];
+	setarray .@OptID_2[0],.@OptID1[.@index1],.@OptID2[.@index2];
+	setarray .@OptID_3[0],.@OptID1[.@index1],.@OptID2[.@index2],.@OptID3[.@index3];
+
+	setarray .@OptVala[0],.@drandvala1,.@drandvala2,.@drandvala3;
+	setarray .@OptIDA_1[0],.@OptIDA1[.@indexA1];
+	setarray .@OptIDA_2[0],.@OptIDA1[.@indexA1],.@OptIDA2[.@indexA2];
+	setarray .@OptIDA_3[0],.@OptIDA1[.@indexA1],.@OptIDA2[.@indexA2],.@OptIDA3[.@indexA3];
+
+	setarray .@OptValg[0],.@drandvalg1,.@drandvalg2,.@drandvalg3;
+	setarray .@OptIDG_1[0],.@OptIDG1[.@indexG1];
+	setarray .@OptIDG_2[0],.@OptIDG1[.@indexG1],.@OptIDG2[.@indexG2];
+	setarray .@OptIDG_3[0],.@OptIDG1[.@indexG1],.@OptIDG2[.@indexG2],.@OptIDG3[.@indexG3];
+	
+	setarray .@OptVals[0],.@drandvals1,.@drandvals2,.@drandvals3;
+	setarray .@OptIDS_1[0],.@OptIDS1[.@indexS1];
+	setarray .@OptIDS_2[0],.@OptIDS1[.@indexS1],.@OptIDS2[.@indexS2];
+	setarray .@OptIDS_3[0],.@OptIDS1[.@indexS1],.@OptIDS2[.@indexS2],.@OptIDS3[.@indexS3];
+
+	setarray .@OptValb[0],.@drandvalb1,.@drandvalb2,.@drandvalb3;
+	setarray .@OptIDB_1[0],.@OptIDB1[.@indexB1];
+	setarray .@OptIDB_2[0],.@OptIDB1[.@indexB1],.@OptIDB2[.@indexB2];
+	setarray .@OptIDB_3[0],.@OptIDB1[.@indexB1],.@OptIDB2[.@indexB2],.@OptIDB3[.@indexB3];
+
+	setarray .@OptValac[0],.@drandvalac1,.@drandvalac2,.@drandvalac3;
+	setarray .@OptIDAC_1[0],.@OptIDAC1[.@indexAC1];
+	setarray .@OptIDAC_2[0],.@OptIDAC1[.@indexAC1],.@OptIDAC2[.@indexAC2];
+	setarray .@OptIDAC_3[0],.@OptIDAC1[.@indexAC1],.@OptIDAC2[.@indexAC2],.@OptIDAC3[.@indexAC3];
+
+	setarray .@OptValh[0],.@drandvalh1,.@drandvalh2,.@drandvalh3;
+	setarray .@OptIDH_1[0],.@OptIDH1[.@indexH1];
+	setarray .@OptIDH_2[0],.@OptIDH1[.@indexH1],.@OptIDH2[.@indexH2];
+	setarray .@OptIDH_3[0],.@OptIDH1[.@indexH1],.@OptIDH2[.@indexH2],.@OptIDH3[.@indexH3];
+
+
+
+	if(killedrid == .@mobid ) {
+
+	if (.@opt_itemid1 == 0 ) { } else {
+		if (opt_result1 >= 20 && opt_result1 <= 50) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemid1,1,0,0,0,0,0,0,0,.@OptID_1,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_1,.@OptVal,.@OptParam;
+			}
+		} else {
+			
+		if (opt_result1 >= 5 && opt_result1 <= 10) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemid1,1,0,0,0,0,0,0,0,.@OptID_2,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_2,.@OptVal,.@OptParam;
+			}
+		} else {
+
+		if (opt_result1 >= 1 && opt_result1 <= 3) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemid1,1,0,0,0,0,0,0,0,.@OptID_3,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_3,.@OptVal,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemid2 == 0 ) { } else {
+		if (opt_result2 >= 20 && opt_result2 <= 50) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemid2,1,0,0,0,0,0,0,0,.@OptID_1,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_1,.@OptVal,.@OptParam;
+			}
+		} else {
+			
+		if (opt_result2 >= 5 && opt_result2 <= 10) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemid1,1,0,0,0,0,0,0,0,.@OptID_2,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_2,.@OptVal,.@OptParam;
+			}
+		} else {
+
+		if (opt_result2 >= 1 && opt_result2 <= 3) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemid2,1,0,0,0,0,0,0,0,.@OptID_3,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_3,.@OptVal,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemid3 == 0 ) { } else {
+		if (opt_result3 >= 20 && opt_result3 <= 50) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemid3,1,0,0,0,0,0,0,0,.@OptID_1,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_1,.@OptVal,.@OptParam;
+			}
+		} else {
+			
+		if (opt_result3 >= 5 && opt_result3 <= 10) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemid1,1,0,0,0,0,0,0,0,.@OptID_2,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_2,.@OptVal,.@OptParam;
+			}
+		} else {
+
+		if (opt_result3 >= 1 && opt_result3 <= 3) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemid3,1,0,0,0,0,0,0,0,.@OptID_3,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_3,.@OptVal,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemid4 == 0 ) { } else {
+		if (opt_result4 >= 20 && opt_result4 <= 50) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemid4,1,0,0,0,0,0,0,0,.@OptID_1,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid4,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_1,.@OptVal,.@OptParam;
+			}
+		} else {
+			
+		if (opt_result4 >= 5 && opt_result4 <= 10) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemid1,1,0,0,0,0,0,0,0,.@OptID_2,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid4,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_2,.@OptVal,.@OptParam;
+			}
+		} else {
+
+		if (opt_result4 >= 1 && opt_result4 <= 3) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemid4,1,0,0,0,0,0,0,0,.@OptID_3,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid4,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_3,.@OptVal,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+	if (.@opt_itemid5 == 0 ) { } else {
+		if (opt_result5 >= 20 && opt_result5 <= 50) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemid5,1,0,0,0,0,0,0,0,.@OptID_1,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid5,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_1,.@OptVal,.@OptParam;
+			}
+		} else {
+			
+		if (opt_result5 >= 5 && opt_result5 <= 10) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemid1,1,0,0,0,0,0,0,0,.@OptID_2,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid5,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_2,.@OptVal,.@OptParam;
+			}
+		} else {
+
+		if (opt_result5 >= 1 && opt_result5 <= 3) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemid5,1,0,0,0,0,0,0,0,.@OptID_3,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid5,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_3,.@OptVal,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+	if (.@opt_itemid6 == 0 ) { } else {
+		if (opt_result6 >= 20 && opt_result6 <= 50) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemid6,1,0,0,0,0,0,0,0,.@OptID_1,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid6,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_1,.@OptVal,.@OptParam;
+			}
+		} else {
+			
+		if (opt_result6 >= 5 && opt_result6 <= 10) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemid1,1,0,0,0,0,0,0,0,.@OptID_2,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid6,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_2,.@OptVal,.@OptParam;
+			}
+		} else {
+
+		if (opt_result6 >= 1 && opt_result6 <= 3) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemid6,1,0,0,0,0,0,0,0,.@OptID_3,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid6,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_3,.@OptVal,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+	if (.@opt_itemid7 == 0 ) { } else {
+		if (opt_result7 >= 20 && opt_result7 <= 50) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemid7,1,0,0,0,0,0,0,0,.@OptID_1,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid7,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_1,.@OptVal,.@OptParam;
+			}
+		} else {
+			
+		if (opt_result7 >= 5 && opt_result7 <= 10) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemid1,1,0,0,0,0,0,0,0,.@OptID_2,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid7,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_2,.@OptVal,.@OptParam;
+			}
+		} else {
+
+		if (opt_result7 >= 1 && opt_result7 <= 3) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemid7,1,0,0,0,0,0,0,0,.@OptID_3,.@OptVal,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemid7,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptID_3,.@OptVal,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+	if (.@opt_itemida1 == 0 ) { } else {
+		if (opt_resulta1 >= 20 && opt_resulta1 <= 50) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemida1,1,0,0,0,0,0,0,0,.@OptIDA_1,.@OptVala,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemida1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDA_1,.@OptVala,.@OptParam;
+			}
+		} else {
+			
+		if (opt_resulta1 >= 5 && opt_resulta1 <= 10) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemida1,1,0,0,0,0,0,0,0,.@OptIDA_2,.@OptVala,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemida1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDA_2,.@OptVala,.@OptParam;
+			}
+		} else {
+
+		if (opt_resulta1 >= 1 && opt_resulta1 <= 3) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemida1,1,0,0,0,0,0,0,0,.@OptIDA_3,.@OptVala,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemida1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDA_3,.@OptVala,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemida2 == 0 ) { } else {
+		if (opt_resulta2 >= 20 && opt_resulta2 <= 50) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemida2,1,0,0,0,0,0,0,0,.@OptIDA_1,.@OptVala,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemida2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDA_1,.@OptVala,.@OptParam;
+			}
+		} else {
+			
+		if (opt_resulta2 >= 5 && opt_resulta2 <= 10) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemida1,1,0,0,0,0,0,0,0,.@OptIDA_2,.@OptVala,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemida2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDA_2,.@OptVala,.@OptParam;
+			}
+		} else {
+
+		if (opt_resulta2 >= 1 && opt_resulta2 <= 3) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemida2,1,0,0,0,0,0,0,0,.@OptIDA_3,.@OptVala,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemida2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDA_3,.@OptVala,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemida3 == 0 ) { } else {
+		if (opt_resulta3 >= 20 && opt_resulta3 <= 50) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemida3,1,0,0,0,0,0,0,0,.@OptIDA_1,.@OptVala,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemida3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDA_1,.@OptVala,.@OptParam;
+			}
+		} else {
+			
+		if (opt_resulta3 >= 5 && opt_resulta3 <= 10) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemida1,1,0,0,0,0,0,0,0,.@OptIDA_2,.@OptVala,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemida3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDA_2,.@OptVala,.@OptParam;
+			}
+		} else {
+
+		if (opt_resulta3 >= 1 && opt_resulta3 <= 3) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemida3,1,0,0,0,0,0,0,0,.@OptIDA_3,.@OptVala,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemida3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDA_3,.@OptVala,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemidg1 == 0 ) { } else {
+		if (opt_resultg1 >= 20 && opt_resultg1 <= 50) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemidg1,1,0,0,0,0,0,0,0,.@OptIDG_1,.@OptValg,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidg1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDG_1,.@OptValg,.@OptParam;
+			}
+		} else {
+			
+		if (opt_resultg1 >= 5 && opt_resultg1 <= 10) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemidg1,1,0,0,0,0,0,0,0,.@OptIDG_2,.@OptValg,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidg1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDG_2,.@OptValg,.@OptParam;
+			}
+		} else {
+
+		if (opt_resultg1 >= 1 && opt_resultg1 <= 3) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemidg1,1,0,0,0,0,0,0,0,.@OptIDG_3,.@OptValg,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidg1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDG_3,.@OptValg,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemidg2 == 0 ) { } else {
+		if (opt_resultg2 >= 20 && opt_resultg2 <= 50) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemidg2,1,0,0,0,0,0,0,0,.@OptIDG_1,.@OptValg,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidg2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDG_1,.@OptValg,.@OptParam;
+			}
+		} else {
+			
+		if (opt_resultg2 >= 5 && opt_resultg2 <= 10) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemidg1,1,0,0,0,0,0,0,0,.@OptIDG_2,.@OptValg,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidg2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDG_2,.@OptValg,.@OptParam;
+			}
+		} else {
+
+		if (opt_resultg2 >= 1 && opt_resultg2 <= 3) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemidg2,1,0,0,0,0,0,0,0,.@OptIDG_3,.@OptValg,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidg2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDG_3,.@OptValg,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemidg3 == 0 ) { } else {
+		if (opt_resultg3 >= 20 && opt_resultg3 <= 50) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemidg3,1,0,0,0,0,0,0,0,.@OptIDG_1,.@OptValg,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidg3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDG_1,.@OptValg,.@OptParam;
+			}
+		} else {
+			
+		if (opt_resultg3 >= 5 && opt_resultg3 <= 10) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemidg1,1,0,0,0,0,0,0,0,.@OptIDG_2,.@OptValg,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidg3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDG_2,.@OptValg,.@OptParam;
+			}
+		} else {
+
+		if (opt_resultg3 >= 1 && opt_resultg3 <= 3) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemidg3,1,0,0,0,0,0,0,0,.@OptIDG_3,.@OptValg,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidg3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDG_3,.@OptValg,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+	if (.@opt_itemids1 == 0 ) { } else {
+		if (opt_results1 >= 20 && opt_results1 <= 50) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemids1,1,0,0,0,0,0,0,0,.@OptIDS_1,.@OptVals,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemids1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDS_1,.@OptVals,.@OptParam;
+			}
+		} else {
+			
+		if (opt_results1 >= 5 && opt_results1 <= 10) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemids1,1,0,0,0,0,0,0,0,.@OptIDS_2,.@OptVals,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemids1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDS_2,.@OptVals,.@OptParam;
+			}
+		} else {
+
+		if (opt_results1 >= 1 && opt_results1 <= 3) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemids1,1,0,0,0,0,0,0,0,.@OptIDS_3,.@OptVals,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemids1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDS_3,.@OptVals,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemids2 == 0 ) { } else {
+		if (opt_results2 >= 20 && opt_results2 <= 50) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemids2,1,0,0,0,0,0,0,0,.@OptIDS_1,.@OptVals,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemids2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDS_1,.@OptVals,.@OptParam;
+			}
+		} else {
+			
+		if (opt_results2 >= 5 && opt_results2 <= 10) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemids1,1,0,0,0,0,0,0,0,.@OptIDS_2,.@OptVals,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemids2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDS_2,.@OptVals,.@OptParam;
+			}
+		} else {
+
+		if (opt_results2 >= 1 && opt_results2 <= 3) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemids2,1,0,0,0,0,0,0,0,.@OptIDS_3,.@OptVals,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemids2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDS_3,.@OptVals,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemids3 == 0 ) { } else {
+		if (opt_results3 >= 20 && opt_results3 <= 50) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemids3,1,0,0,0,0,0,0,0,.@OptIDS_1,.@OptVals,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemids3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDS_1,.@OptVals,.@OptParam;
+			}
+		} else {
+			
+		if (opt_results3 >= 5 && opt_results3 <= 10) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemids1,1,0,0,0,0,0,0,0,.@OptIDS_2,.@OptVals,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemids3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDS_2,.@OptVals,.@OptParam;
+			}
+		} else {
+
+		if (opt_results3 >= 1 && opt_results3 <= 3) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemids3,1,0,0,0,0,0,0,0,.@OptIDS_3,.@OptVals,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemids3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDS_3,.@OptVals,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+	if (.@opt_itemidb1 == 0 ) { } else {
+		if (opt_resultb1 >= 20 && opt_resultb1 <= 50) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemidb1,1,0,0,0,0,0,0,0,.@OptIDB_1,.@OptValb,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidb1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDB_1,.@OptValb,.@OptParam;
+			}
+		} else {
+			
+		if (opt_resultb1 >= 5 && opt_resultb1 <= 10) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemidb1,1,0,0,0,0,0,0,0,.@OptIDB_2,.@OptValb,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidb1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDB_2,.@OptValb,.@OptParam;
+			}
+		} else {
+
+		if (opt_resultb1 >= 1 && opt_resultb1 <= 3) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemidb1,1,0,0,0,0,0,0,0,.@OptIDB_3,.@OptValb,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidb1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDB_3,.@OptValb,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemidb2 == 0 ) { } else {
+		if (opt_resultb2 >= 20 && opt_resultb2 <= 50) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemidb2,1,0,0,0,0,0,0,0,.@OptIDB_1,.@OptValb,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidb2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDB_1,.@OptValb,.@OptParam;
+			}
+		} else {
+			
+		if (opt_resultb2 >= 5 && opt_resultb2 <= 10) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemidb1,1,0,0,0,0,0,0,0,.@OptIDB_2,.@OptValb,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidb2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDB_2,.@OptValb,.@OptParam;
+			}
+		} else {
+
+		if (opt_resultb2 >= 1 && opt_resultb2 <= 3) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemidb2,1,0,0,0,0,0,0,0,.@OptIDB_3,.@OptValb,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidb2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDB_3,.@OptValb,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemidb3 == 0 ) { } else {
+		if (opt_resultb3 >= 20 && opt_resultb3 <= 50) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemidb3,1,0,0,0,0,0,0,0,.@OptIDB_1,.@OptValb,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidb3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDB_1,.@OptValb,.@OptParam;
+			}
+		} else {
+			
+		if (opt_resultb3 >= 5 && opt_resultb3 <= 10) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemidb1,1,0,0,0,0,0,0,0,.@OptIDB_2,.@OptValb,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidb3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDB_2,.@OptValb,.@OptParam;
+			}
+		} else {
+
+		if (opt_resultb3 >= 1 && opt_resultb3 <= 3) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemidb3,1,0,0,0,0,0,0,0,.@OptIDB_3,.@OptValb,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidb3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDB_3,.@OptValb,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+	if (.@opt_itemidac1 == 0 ) { } else {
+		if (opt_resultac1 >= 20 && opt_resultac1 <= 50) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemidac1,1,0,0,0,0,0,0,0,.@OptIDAC_1,.@OptValac,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidac1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDAC_1,.@OptValac,.@OptParam;
+			}
+		} else {
+			
+		if (opt_resultac1 >= 5 && opt_resultac1 <= 10) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemidac1,1,0,0,0,0,0,0,0,.@OptIDAC_2,.@OptValac,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidac1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDAC_2,.@OptValac,.@OptParam;
+			}
+		} else {
+
+		if (opt_resultac1 >= 1 && opt_resultac1 <= 3) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemidac1,1,0,0,0,0,0,0,0,.@OptIDAC_3,.@OptValac,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidac1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDAC_3,.@OptValac,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemidac2 == 0 ) { } else {
+		if (opt_resultac2 >= 20 && opt_resultac2 <= 50) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemidac2,1,0,0,0,0,0,0,0,.@OptIDAC_1,.@OptValac,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidac2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDAC_1,.@OptValac,.@OptParam;
+			}
+		} else {
+			
+		if (opt_resultac2 >= 5 && opt_resultac2 <= 10) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemidac1,1,0,0,0,0,0,0,0,.@OptIDAC_2,.@OptValac,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidac2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDAC_2,.@OptValac,.@OptParam;
+			}
+		} else {
+
+		if (opt_resultac2 >= 1 && opt_resultac2 <= 3) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemidac2,1,0,0,0,0,0,0,0,.@OptIDAC_3,.@OptValac,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidac2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDAC_3,.@OptValac,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemidac3 == 0 ) { } else {
+		if (opt_resultac3 >= 20 && opt_resultac3 <= 50) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemidac3,1,0,0,0,0,0,0,0,.@OptIDAC_1,.@OptValac,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidac3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDAC_1,.@OptValac,.@OptParam;
+			}
+		} else {
+			
+		if (opt_resultac3 >= 5 && opt_resultac3 <= 10) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemidac1,1,0,0,0,0,0,0,0,.@OptIDAC_2,.@OptValac,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidac3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDAC_2,.@OptValac,.@OptParam;
+			}
+		} else {
+
+		if (opt_resultac3 >= 1 && opt_resultac3 <= 3) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemidac3,1,0,0,0,0,0,0,0,.@OptIDAC_3,.@OptValac,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidac3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDAC_3,.@OptValac,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+	if (.@opt_itemidh1 == 0 ) { } else {
+		if (opt_resulth1 >= 20 && opt_resulth1 <= 50) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemidh1,1,0,0,0,0,0,0,0,.@OptIDH_1,.@OptValh,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidh1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDH_1,.@OptValh,.@OptParam;
+			}
+		} else {
+			
+		if (opt_resulth1 >= 5 && opt_resulth1 <= 10) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemidh1,1,0,0,0,0,0,0,0,.@OptIDH_2,.@OptValh,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidh1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDH_2,.@OptValh,.@OptParam;
+			}
+		} else {
+
+		if (opt_resulth1 >= 1 && opt_resulth1 <= 3) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemidh1,1,0,0,0,0,0,0,0,.@OptIDH_3,.@OptValh,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidh1,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDH_3,.@OptValh,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemidh2 == 0 ) { } else {
+		if (opt_resulth2 >= 20 && opt_resulth2 <= 50) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemidh2,1,0,0,0,0,0,0,0,.@OptIDH_1,.@OptValh,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidh2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDH_1,.@OptValh,.@OptParam;
+			}
+		} else {
+			
+		if (opt_resulth2 >= 5 && opt_resulth2 <= 10) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemidh1,1,0,0,0,0,0,0,0,.@OptIDH_2,.@OptValh,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidh2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDH_2,.@OptValh,.@OptParam;
+			}
+		} else {
+
+		if (opt_resulth2 >= 1 && opt_resulth2 <= 3) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemidh2,1,0,0,0,0,0,0,0,.@OptIDH_3,.@OptValh,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidh2,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDH_3,.@OptValh,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+
+	if (.@opt_itemidh3 == 0 ) { } else {
+		if (opt_resulth3 >= 20 && opt_resulth3 <= 50) {
+			if(autolootoption1 == 1) {
+				getitem3 .@opt_itemidh3,1,0,0,0,0,0,0,0,.@OptIDH_1,.@OptValh,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidh3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDH_1,.@OptValh,.@OptParam;
+			}
+		} else {
+			
+		if (opt_resulth3 >= 5 && opt_resulth3 <= 10) {
+			if(autolootoption2 == 1) {
+				getitem3 .@opt_itemidh1,1,0,0,0,0,0,0,0,.@OptIDH_2,.@OptValh,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidh3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDH_2,.@OptValh,.@OptParam;
+			}
+		} else {
+
+		if (opt_resulth3 >= 1 && opt_resulth3 <= 3) {
+			if(autolootoption3 == 1) {
+				getitem3 .@opt_itemidh3,1,0,0,0,0,0,0,0,.@OptIDH_3,.@OptValh,.@OptParam;
+			}
+			else {
+				makeitem3 .@opt_itemidh3,1,mapid2name(@mobdead_m),@mobdead_x,@mobdead_y,0,0,0,0,0,0,0,.@OptIDH_3,.@OptValh,.@OptParam;
+			}
+		} 
+	}
+	}
+	}
+
+}
+end;
+}
+
+

@@ -1,0 +1,71 @@
+
+//==========================// Palitan mo ung sample ng name ng monster kunwari Poring //==========================//
+//==========================// tas save mo name poring.txt kung anong name ng monster //==========================//
+
+-	script	sample	-1,{
+
+
+OnNPCKillEvent:
+
+	//==========================// Monster ID //==========================// 
+
+	set .@mobid,2776;		// <==============// MONSTER ID 
+
+	//==========================// Item ID //==========================// 
+
+	set .@opt_itemid1,0;		// <==============// WEAPON ITEM ID  1
+	set .@opt_itemid2,0;		// <==============// WEAPON ITEM ID  2
+	set .@opt_itemid3,0;		// <==============// WEAPON ITEM ID  3
+	set .@opt_itemid4,0;		// <==============// WEAPON ITEM ID  4
+	set .@opt_itemid5,0;		// <==============// WEAPON ITEM ID  5
+
+	set .@opt_itemida1,0;		// <==============// ARMOR ITEM ID  1
+	set .@opt_itemida2,0;		// <==============// ARMOR ITEM ID  2
+	set .@opt_itemida3,0;		// <==============// ARMOR ITEM ID  3
+
+	set .@opt_itemidg1,0;		// <==============// GARMENT ITEM ID  1
+	set .@opt_itemidg2,0;		// <==============// GARMENT ITEM ID  2
+	set .@opt_itemidg3,0;		// <==============// GARMENT ITEM ID  3
+
+	set .@opt_itemids1,0;		// <==============// SHIELD ITEM ID  1
+	set .@opt_itemids2,0;		// <==============// SHIELD ITEM ID  2
+	set .@opt_itemids3,0;		// <==============// SHIELD ITEM ID  3
+
+	set .@opt_itemidb1,0;		// <==============// BOOTS ITEM ID  1
+	set .@opt_itemidb2,0;		// <==============// BOOTS ITEM ID  2
+	set .@opt_itemidb3,0;		// <==============// BOOTS ITEM ID  3
+
+	set .@opt_itemidac1,0;		// <==============// ACCESSORY ITEM ID  1
+	set .@opt_itemidac2,0;		// <==============// ACCESSORY ITEM ID  2
+	set .@opt_itemidac3,0;		// <==============// ACCESSORY ITEM ID  3
+
+	set .@opt_itemidh1,0;		// <==============// HEADGEAR ITEM ID  1
+	set .@opt_itemidh2,0;		// <==============// HEADGEAR ITEM ID  2
+	set .@opt_itemidh3,0;		// <==============// HEADGEAR ITEM ID  3
+
+
+	//==========================// Drop Rate //==========================// 
+
+	set opt_result1,rand(1,300);	// <==============// WEAPON Drop Rate ITEM 1
+	set opt_result2,rand(1,300);	// <==============// WEAPON Drop Rate ITEM 2
+	set opt_result3,rand(1,300);	// <==============// WEAPON Drop Rate ITEM 3
+	set opt_result4,rand(1,300);	// <==============// WEAPON Drop Rate ITEM 4
+	set opt_result5,rand(1,300);	// <==============// WEAPON Drop Rate ITEM 5
+	set opt_resulta1,rand(1,300);	// <==============// ARMOR Drop Rate ITEM 1
+	set opt_resulta2,rand(1,300);	// <==============// ARMOR Drop Rate ITEM 2
+	set opt_resulta3,rand(1,300);	// <==============// ARMOR Drop Rate ITEM 3
+	set opt_resultg1,rand(1,300);	// <==============// GARMENT Drop Rate ITEM 1
+	set opt_resultg2,rand(1,300);	// <==============// GARMENT Drop Rate ITEM 2
+	set opt_resultg3,rand(1,300);	// <==============// GARMENT Drop Rate ITEM 3
+	set opt_results1,rand(1,300);	// <==============// SHIELD Drop Rate ITEM 1
+	set opt_results2,rand(1,300);	// <==============// SHIELD Drop Rate ITEM 2
+	set opt_results3,rand(1,300);	// <==============// SHIELD Drop Rate ITEM 3
+	set opt_resultb1,rand(1,300);	// <==============// BOOTS Drop Rate ITEM 1
+	set opt_resultb2,rand(1,300);	// <==============// BOOTS Drop Rate ITEM 2
+	set opt_resultb3,rand(1,300);	// <==============// BOOTS Drop Rate ITEM 3
+	set opt_resultac1,rand(1,300);	// <==============// ACCESSORY Drop Rate ITEM 1
+	set opt_resultac2,rand(1,300);	// <==============// ACCESSORY Drop Rate ITEM 2
+	set opt_resultac3,rand(1,300);	// <==============// ACCESSORY Drop Rate ITEM 3
+	set opt_resulth1,rand(1,300);	// <==============// HEADGEAR Drop Rate ITEM 1
+	set opt_resulth2,rand(1,300);	// <==============// HEADGEAR Drop Rate ITEM 2
+	set opt_resulth3,rand(1,300);	// <==============// HEADGEAR Drop Rate ITEM 3

@@ -1,0 +1,46 @@
+
+
+-	script	autojump	-1,{
+OnPcLoginEvent:
+	if (autojump == 1) {
+		set autojump,0;
+		}
+
+	end;
+
+OnAutojump:
+	set autojump,autojump+1;
+	
+	if (autojump == 1) {
+		dispbottom "Autojump is now Activate";
+		addtimer .autojump,"autojump::OnAutojumpR";
+		end;
+		}
+
+	if (autojump >= 2) {
+		dispbottom "Autojump is now Deactivate";
+		set autojump,0;
+		stopnpctimer;
+		end;
+		}
+
+	end;
+
+
+OnAutojumpR:
+	if (autojump == 1 ) {
+		atcommand "@jump";
+		addtimer .autojump,"autojump::OnAutojumpR";
+		end;
+		}
+
+	end;
+
+OnInit:
+	set .autojump, 1000*60*1; //Timer in millisecon
+	bindatcmd "autojump","autojump::OnAutojump";
+
+
+
+}
+

@@ -1,0 +1,45 @@
+
+
+-	script	autostore	-1,{
+OnPcLoginEvent:
+	if (autostore == 1) {
+		set autostore,0;
+		}
+	end;
+
+
+Onautostore:
+
+	set autostore,autostore+1;
+	
+	if (autostore == 1) {
+		dispbottom "Autostore is now Activate";
+		addtimer .autostore,"autojump::OnautostoreR";
+		end;
+		}
+
+	if (autostore >= 2) {
+		dispbottom "Autostore is now Deactivate";
+		set autostore,0;
+		stopnpctimer;
+		end;
+		}
+
+	end;
+
+
+OnautostoreR:
+	if (autostore == 1 ) {
+		atcommand "@storein";
+		addtimer .autostore,"autojump::OnautostoreR";
+		end;
+		}
+
+	end;
+
+OnInit:
+	set .autostore, 1000*60*1; //Timer in millisecon
+	bindatcmd "autostore","autostore::Onautostore";
+	end;
+}
+

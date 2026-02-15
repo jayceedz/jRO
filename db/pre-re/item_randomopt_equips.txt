@@ -1,0 +1,7 @@
+// Items Random Option Database	
+//
+// Structure of Database:
+// Item_ID,RandomOption_GroupId1{,RandomOption_GroupId2,RandomOption_GroupId3,RandomOption_GroupId4,RandomOption_GroupId5}
+
+
+//5123,RDMOPTG_WEP_1,RDMOPTG_WEP_2,RDMOPTG_WEP_3

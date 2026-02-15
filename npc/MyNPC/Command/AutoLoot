@@ -1,0 +1,73 @@
+
+
+
+-	script	optautoloot	-1,{
+
+OnInit:
+	bindatcmd "autoloot1","optautoloot::OnOpt1",0,99;
+	bindatcmd "autoloot2","optautoloot::OnOpt2",0,99;
+	bindatcmd "autoloot3","optautoloot::OnOpt3",0,99;
+	end;
+
+OnPcLoginEvent:
+	if (autolootoption1 >= 1) {
+		set autolootoption1,0;
+		}
+	if (autolootoption2 >= 1) {
+		set autolootoption2,0;
+		}
+	if (autolootoption3 >= 1) {
+		set autolootoption3,0;
+		}
+	end;
+
+OnOpt1:
+	set autolootoption1,autolootoption1+1;
+	if (autolootoption1 >= 2) {
+		set autolootoption1,0;
+		}
+	goto OnOptR;
+	end;
+
+OnOpt2:
+	set autolootoption2,autolootoption2+1;
+	if (autolootoption2 >= 2) {
+		set autolootoption2 ,0;
+		}
+	goto OnOptR;
+	end;
+
+OnOpt3:
+	set autolootoption3,autolootoption3+1;
+	if (autolootoption3 >= 2) {
+		set autolootoption3,0;
+		}
+	goto OnOptR;
+	end;
+
+OnOptR:
+		dispbottom "===========================";
+		dispbottom "======= Autoloot Option =======";
+		dispbottom "===========================";
+	if (autolootoption1 >= 1) {
+		dispbottom "Autoloot 1 Option is [ Enable ]";
+		}
+		else { 
+		dispbottom "Autoloot 1 Option is [ Disable ]";
+		}
+	if (autolootoption2 >= 1) {
+		dispbottom "Autoloot 2 Option is [ Enable ]";
+		}
+		else { 
+		dispbottom "Autoloot 2 Option is [ Disable ]";
+		}
+	if (autolootoption3 >= 1) {
+		dispbottom "Autoloot 3 Option is [ Enable ]";
+		}
+		else { 
+		dispbottom "Autoloot 3 Option is [ Disable ]";
+		}
+		dispbottom "===========================";
+	end;
+}
+

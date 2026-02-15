@@ -1,0 +1,281 @@
+//===== Changelogs: ====================================================================================
+// V.2 (a) Now the npc name is more suitable to edit.
+//     ( Now Recruits can't enter new players name than him. - thanks to Topher08 for pointing that out.
+// V.3 (a) Prevent players those who completed job, but still able to apply as recruits.
+//======================================================================================================
+// - SQL TABLE
+/*
+CREATE TABLE IF NOT EXISTS `callfrnd` (
+  `id` int(11) NOT NULL auto_increment,
+  `account_id` int(11) NOT NULL default '0',
+  `name` varchar(23) NOT NULL default '',
+  `last_ip` varchar(100) NOT NULL default '',
+  `last_ip2` varchar(100) NOT NULL default '',
+  `ref_name` varchar(23) NOT NULL default '',
+  `ref_id` int(11) NOT NULL default '0',
+  `mins` tinyint(3) unsigned NOT NULL default '0',
+  `days` tinyint(3) unsigned NOT NULL default '0',
+  `task_end` tinyint(3) unsigned NOT NULL default '0',
+  PRIMARY KEY (`account_id`),
+  KEY (`id`)
+) ENGINE=MyISAM;
+*/
+//======================================================================================================
+
+//======================================================================================================
+// Edit Configurations here:
+//======================================================================================================
+-	script	Ref_config	-1,{
+
+OnInit:
+	set $@daystoplay, 7;	// total no of days to play.
+	set $@noofplayers, 2;	// min. no. of players to call to server to be eligible to get the prize.
+	set $@hourstoplay, 2;	// No. of hours to play everyday.
+	set $@noofoctet, 4;		// No. of octects, that script will check.
+	set $@new_aid, 2000000;	// To be sure that the player is really new to server. Put the latest registered account id here.
+	set $@name$,"^E41B17[Referral NPC]^000000";	// Edit npc name here.
+	end;
+}
+
+//======================================================================================================
+// The main NPC:
+//======================================================================================================
+prontera,147,184,5	script	Referral Npc	100,{
+		
+	mes $@name$;
+	mes "^616D7EI am one of the staff members of GM Team. And i am assigned to award players who bring players to our server and contribute to server population.";
+	mes " ";
+	next;
+	mes $@name$;
+	mes "^616D7ESo, How may I help you?";
+	next;
+	switch(select("- My Friend Called me!:- I have called My Friend's:- Close")) {
+		mes $@name$;
+		case 1:
+			if ( getcharid(3) < $@new_aid ) {
+				mes "^616D7EYou doesn't seems to be new to server.";
+				close;
+			}
+			mes "^616D7EOh.. Nice, so would you like to proceed with the Referral System?";
+			switch(select("Yes")) {
+				case 1:
+					if (#CallFrnd >= 1) {
+						mes "^616D7EYou are already Registered on our database.";
+						close;
+					}
+					goto ReferralSystem;
+				}
+		case 2:
+			if ( #YCallFrnd ) {
+				mes "^0000ffThanks! for supporting our server.";
+				close;
+			}
+			query_sql("SELECT count(ref_id) from `callfrnd` where ref_id = " + getcharid(3) + " AND task_end = 1",.@count);
+				if(.@count >= $@noofplayers) {
+					mes "^616D7ECongratulations, It seems you have Recruited [^880000 " + .@count + " ^000000] Players, to our server.";
+					next;
+					set #YCallFrnd, 1;
+					mes $@name$;
+					mes "^616D7EAll Process has been completed successfully. Now are eligible of buying any but only one Item from the Referral Award Shop.";
+					mes " ";
+					mes "^616D7EHave a pleasent Stay at our server.!";
+					close;
+				}
+			mes "^616D7ENot Enough Recruitment's. Work Hard.";
+			close;
+		case 3:
+			mes "^616D7EI wish!, if you could have helped me. :(";
+			close;
+	}
+	end;
+	
+ReferralSystem:
+	next;
+	mes $@name$;
+	mes " ";
+	mes "^ff0000NOTE: ^000000^616D7EThe Entered Name should match with your friend's name or he won't get the prize.";
+	mes " ";
+	mes "^616D7EEnter your Friend name: ";
+	next;
+	input .@frnd$;
+	if ( .@frnd$ == strcharinfo(0) ) {
+		mes $@name$;
+		mes "^616D7ESorry, you are not allowed to Enter your name.";
+		close;
+	}
+	mes $@name$;
+	mes "^616D7ESo you have been called by [ ^ff000f" + .@frnd$ + "^000000 ]? ^616D7EIs that right??";
+	next;
+	if(select("Yes:Back")==2) goto ReferralSystem;
+		mes $@name$;
+		mes "^616D7EIf you play more than [ ^2B60DE" + $@daystoplay + " days ^000000] and spend more than "+$@hourstoplay+" hour to our server every day. Your friend will get a New Item from the list.";
+		next;
+		switch(select("Next:Show me the item List")) {
+			case 1:
+				break;
+			case 2:
+				mes $@name$;
+				mes "^616D7ETalk to my Neighbour Npc to check the Item List Or Read forums.";
+				close;
+		}
+		mes $@name$;
+		mes "^616D7EAnd, if you Call your [ ^2B60DE" + $@noofplayers + " Friends ^000000] to our server, and they play more than [ ^2B60DE" + $@daystoplay + " days ^000000] and 1 hour every day. Then you will also have a chance to win a Free Item.";
+		next;
+		mes $@name$;
+		mes "^616D7EIts, Just that you need to follow some rules: ";
+		mes " ";
+		next;
+		switch(select("Exit:Complete the process")) {
+			case 1:
+				mes $@name$;
+				mes "^616D7ENevermind~, You can come back again!";
+				close;
+			case 2:
+				query_sql("SELECT last_ip FROM `login` WHERE account_id = "+getcharid(3)+"", .@lastip$);	// recruits ip address
+				set .@frnd, query_sql ("SELECT name, char.account_id, last_ip FROM `char` LEFT JOIN `login` ON login.account_id = char.account_id where name = '" + escape_sql(.@frnd$) + "'",.@chname$, .@account_id, .@flastip$);	// recruiter ip address and information
+					if (!.@frnd) {
+						mes $@name$;
+						mes "^ff0000FAILED! FAILED! FAILED!";
+						mes " ";
+						mes "^616D7ESorry, We didn't found your friend's name in our database. Make sure that you Enter's Everything correctly.";
+						close;
+					}
+					if ( .@account_id == getcharid(3) ) {
+						mes $@name$;
+						mes "^ff0000WARNING: ^616D7EThis Player is found on your account. Sorry, Unable to proceed further!!!";
+						mes " ";
+						mes "Enter some other name";
+						close;
+					}
+					if ( .@account_id > getcharid(3) ) {	// i am older than my frnd
+						mes $@name$;
+						mes "^616D7EIt seems, your friend is newer than you to our server. Damn you cheaters. ";
+						close;
+					}
+					if ( .@lastip$ == .@flastip$ ) {
+						mes $@name$;
+						mes "^616D7EIt seems you and your friend are from IP Address: ^ff0000" + .@flastip$ + "^000000. Sorry, but its not allowed.";
+						close;
+					}
+				set #CallFrnd, 1;
+				query_sql("INSERT INTO `callfrnd` VALUES (NULL," + getcharid(3) + ",'" + escape_sql(strcharinfo(0)) + "','" + .@lastip$ + "','None','" + escape_sql(.@frnd$) + "'," + .@account_id + ",0,0,0)");
+				mes $@name$;
+				mes "^616D7EYour registration is now accepted.";
+				mes "^ff0000Now, you should relog to make changes save and start properly.^000000";
+				mes " ";
+				mes "and ^0000ff~ Welcome to Xerus Ragnarok Online !.";
+				close;
+		}
+}
+
+//======================================================================================================
+// Keep Checking Records and performs accordingly.
+//======================================================================================================
+-	script	timeplayed	-1,{
+
+OnPCLoginEvent:
+	if (#CallFrnd != 1) end;	// Task still not started or is completed
+	query_sql("SELECT ref_id, mins, days from `callfrnd` where account_id = " + getcharid(3), @ref_id, @minute, consecutive_days);
+	query_sql("SELECT SUBSTRING_INDEX(last_ip,'.'," + ($@noofoctet) + ") from `login` where account_id = " + @ref_id,.@fip$);
+	query_sql("SELECT SUBSTRING_INDEX(last_ip,'.'," + ($@noofoctet) + ") from `login` where account_id = " + getcharid(3),@myip$);
+	if((#lastDayOnlineC == gettimetick(2)/86400)) end;	// If today's job is completed or not.
+	if( #lastDayOnlineC < ((gettimetick(2)/86400)-1) ) {	// if login was not yesterday
+		set consecutive_days, 0;
+		set @minute, 0;
+		goto TimerStart;
+	}
+	if( #lastDayOnlineC == ((gettimetick(2)/86400)-1) ) {	// if login was yesterday
+		goto TimerStart;
+	}
+
+TimerStart:
+	if(.@fip$ == @myip$) {
+		dispbottom "Referral system Stopped because you and your friend(s) ip is same.";
+		end;
+	}
+	attachnpctimer ""+strcharinfo(0);
+	initnpctimer;
+	end;
+	
+OnTimer30000:
+	if(checkvending() == 1 || checkchatting() == 1) {	//Check if Vending or chatting
+		dispbottom "The timer stopped because you are vending/chatting. Please relog if you wish to start again.";
+		stopnpctimer;
+		end;
+	}
+
+	getmapxy( .@map$, .@x, .@y, 0 );	//Check if Idle
+	if(@map$ == .@map$ && @x == .@x && @y == .@y) {
+		set @afk, @afk + 1;
+	} else {
+		set @afk, 0;
+	}
+	set @map$, .@map$;
+	set @x, .@x;
+	set @y, .@y;
+	
+	if(@afk == 5) {	// if afk for 5 mins reduce 4 mins from their total minutes.
+		set @minute, @minute - 4;
+		dispbottom "The timer stopped because you were Idle for 5 minutes. Please relog if you wish to start again.";
+		stopnpctimer;
+		end;
+	}
+	end;
+
+OnTimer60000:	//Check every 1 Minute
+	set @minute, @minute + 1;
+	if(@minute == ($@hourstoplay*60)) {
+		set @minute,0;
+		query_sql("UPDATE `callfrnd` SET days = (days+1) WHERE account_id = " + getcharid(3) +";");
+		set #lastDayOnlineC, gettimetick(2)/86400;
+		set consecutive_days, consecutive_days +1;
+			if( consecutive_days == $@daystoplay ) {
+				set #CallFrnd, 2;
+				query_sql("UPDATE `callfrnd` SET task_end = 1 WHERE account_id = " + getcharid(3) +";");
+				stopnpctimer;
+				end;
+			}
+		end;
+	}
+	initnpctimer;
+	end;
+	
+OnPCLogoutEvent:
+	if (#CallFrnd != 1) end;
+	query_sql("INSERT INTO `callfrnd` (id,account_id,mins) VALUES (NULL," + getcharid(3) + ","+@minute+") ON DUPLICATE KEY UPDATE account_id= " + getcharid(3) + ",last_ip='"+@myip$+"',mins="+@minute);
+	end;
+}
+
+//======================================================================================================
+// Shop NPC:
+// NOTE: This npc lets you buy only one item of quantity one.
+//======================================================================================================
+prontera,150,184,5	script	Referral Award Shop	83,{
+	callshop "Ref#shop1",1;
+	npcshopattach "Ref#shop1";
+	end;
+	
+OnBuyItem:
+	if(#YCallFrnd == 1) {
+		set @cost,0;
+		if ( @bought_quantity > 1) {
+			message strcharinfo(0), "You are only allowed to buy one item.";
+			end;
+		}
+		getitem @bought_nameid,@bought_quantity;
+		set #YCallFrnd, 2;
+		deletearray @bought_quantity, getarraysize(@bought_quantity);
+		deletearray @bought_nameid, getarraysize(@bought_nameid);
+		end;
+	} else {
+		mes "[ " + strnpcinfo(3) + " ]";
+		mes "What? " + ((#YCallFrnd==0)? "you haven't Referred anyone to our server.":"you have alredy Received the prize.");
+		close;
+	}
+	
+OnInit:
+	npcshopattach "Ref#shop1";
+	end;
+}
+
+-	shop	Ref#shop1	83,12130:100
