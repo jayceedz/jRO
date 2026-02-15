@@ -726,6 +726,11 @@ struct Battle_Config
 	int item_zeny;
 	int item_cash;
  
+	int feature_goldpc_active;
+	int feature_goldpc_time;
+	int feature_goldpc_max_points;
+	int feature_goldpc_vip;
+
 #include "../custom/battle_config_struct.inc"
 };
 

@@ -2204,6 +2204,10 @@
 #if PACKETVER >= 20140205
 	packet(0x09DA,-1);
 #endif
+ 
+#if PACKETVER_MAIN_NUM >= 20140430 || PACKETVER_RE_NUM >= 20140430 || defined(PACKETVER_ZERO)
+	parseable_packet( HEADER_CZ_DYNAMICNPC_CREATE_REQUEST, sizeof( PACKET_CZ_DYNAMICNPC_CREATE_REQUEST ), clif_parse_dynamic_npc, 0 );
+#endif
 
 // 2014-10-08Ragexe
 #if PACKETVER >= 20141008

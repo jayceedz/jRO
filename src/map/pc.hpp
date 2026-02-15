@@ -55,6 +55,8 @@ enum sc_type : int16;
 #define ATTENDANCE_DATE_VAR "#AttendanceDate"
 #define ATTENDANCE_COUNT_VAR "#AttendanceCounter"
 #define ACHIEVEMENTLEVEL "AchievementLevel"
+#define GOLDPC_POINT_VAR "Hourly_Points"
+#define GOLDPC_SECONDS_VAR "Goldpc_Seconds"
 
 //Update this max as necessary. 55 is the value needed for Super Baby currently
 //Raised to 105 since Expanded Super Baby needs it.
@@ -790,6 +792,8 @@ struct map_session_data {
 		int target;
 	} skill_keep_using;
 };
+
+	int goldpc_tid;
 
 extern struct eri *pc_sc_display_ers; /// Player's SC display table
 

@@ -158,6 +158,24 @@ struct PACKET_ZC_ACK_GUILDSTORAGE_LOG{
 	struct PACKET_ZC_ACK_GUILDSTORAGE_LOG_sub items[];
 };
 
+
+#if PACKETVER_MAIN_NUM >= 20140508 || PACKETVER_RE_NUM >= 20140508 || defined(PACKETVER_ZERO)
+struct PACKET_ZC_GOLDPCCAFE_POINT{
+	int16 packetType;
+	int8 active;
+	int8 unitPoint;
+	int32 point;
+	int32 accumulatePlaySecond;
+} __attribute__((packed));
+#elif PACKETVER_MAIN_NUM >= 20140430 || PACKETVER_RE_NUM >= 20140430
+	// TODO: find difference (1byte) priority low...
+#endif
+
+struct PACKET_CZ_DYNAMICNPC_CREATE_REQUEST{
+	int16 packetType;
+	char nickname[NAME_LENGTH];
+} __attribute__((packed));
+
 // NetBSD 5 and Solaris don't like pragma pack but accept the packed attribute
 #if !defined( sun ) && ( !defined( __NETBSD__ ) || __NetBSD_Version__ >= 600000000 )
 	#pragma pack( pop )
@@ -172,7 +190,8 @@ const uint16 HEADER_ZC_NOTIFY_BARGAIN_SALE_CLOSE = 0x9b3;
 const uint16 HEADER_ZC_ACK_COUNT_BARGAIN_SALE_ITEM = 0x9c4;
 const uint16 HEADER_PACKET_ZC_ACK_GUILDSTORAGE_LOG = 0x9da;
 const uint16 HEADER_CZ_REQ_APPLY_BARGAIN_SALE_ITEM2 = 0xa3d;
-
+const uint16 HEADER_ZC_GOLDPCCAFE_POINT = 0xa15;
+const uint16 HEADER_CZ_DYNAMICNPC_CREATE_REQUEST = 0xa16;
 #pragma warning( pop )
 
 #endif /* PACKETS_HPP */

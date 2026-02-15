@@ -1179,4 +1179,6 @@ int clif_vend(struct map_session_data *sd, int skill_lv);
 bool clif_synthesisui_open(struct map_session_data *sd, unsigned int itemid);
 bool clif_lapine_upgrade_open(struct map_session_data *sd, unsigned int itemid);
 
+void clif_goldpc_info( struct map_session_data& sd );
+
 #endif /* CLIF_HPP */
